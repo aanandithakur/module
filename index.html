@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Science of the Heart | Pathways to Success</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --forest:#1B4332;
+  --deep:#2D6A4F;
+  --sage:#40916C;
+  --mint:#74C69D;
+  --lmint:#D8F3DC;
+  --coral:#F4A261;
+  --terra:#E76F51;
+  --gold:#FFD166;
+  --sky:#A8DADC;
+  --navy:#1D3557;
+  --cream:#FEFAE0;
+  --warm:#F8F5F0;
+  --text:#1e1e1e;
+  --heart-red:#E63946;
+  --heart-dark:#C0392B;
+}
+
+html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var(--text);background:#111;}
+
+/* ─── APP SHELL ─── */
+.app{display:flex;flex-direction:column;height:100vh;overflow:hidden;}
+
+/* ─── TOP NAV ─── */
+.top-nav{
+  flex-shrink:0;height:56px;
+  background:linear-gradient(90deg,var(--forest),var(--deep));
+  display:flex;align-items:center;gap:0;overflow-x:auto;
+  box-shadow:0 2px 12px rgba(0,0,0,.35);
+  scrollbar-width:none;
+  z-index:100;position:relative;
+}
+.top-nav::-webkit-scrollbar{display:none;}
+.nav-logo{
+  flex-shrink:0;padding:0 18px;
+  font-family:'Fraunces',serif;font-size:.85rem;
+  color:var(--gold);white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);
+  height:100%;display:flex;align-items:center;
+}
+.tab-bar{display:flex;height:100%;}
+.tab-btn{
+  flex-shrink:0;padding:0 18px;height:100%;
+  background:transparent;border:none;
+  color:rgba(255,255,255,.6);font-family:'DM Sans',sans-serif;
+  font-size:.82rem;font-weight:700;cursor:pointer;
+  white-space:nowrap;border-bottom:3px solid transparent;
+  transition:color .2s,border-color .2s,background .2s;
+  letter-spacing:.02em;
+}
+.tab-btn:hover{color:rgba(255,255,255,.9);background:rgba(255,255,255,.06);}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(255,255,255,.08);}
+
+/* ─── SLIDES WRAPPER ─── */
+.slides-wrapper{flex:1;overflow:hidden;position:relative;}
+.slides-track{
+  display:flex;height:100%;
+  transition:transform .55s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+.slide{
+  flex-shrink:0;width:100%;height:100%;
+  overflow-y:auto;overflow-x:hidden;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent;
+}
+.slide::-webkit-scrollbar{width:4px;}
+.slide::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:2px;}
+
+/* ─── BOTTOM NAV ─── */
+.bottom-nav{
+  flex-shrink:0;height:52px;background:var(--forest);
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  box-shadow:0 -2px 12px rgba(0,0,0,.3);
+}
+.arrow-btn{
+  width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.35);
+  background:transparent;color:white;font-size:1rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s,transform .15s;
+}
+.arrow-btn:hover{background:rgba(255,255,255,.15);border-color:white;transform:scale(1.1);}
+.arrow-btn:disabled{opacity:.3;cursor:default;transform:none;}
+.dots{display:flex;gap:8px;align-items:center;}
+.dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,.3);cursor:pointer;
+  transition:background .2s,transform .2s,width .3s;border:none;
+}
+.dot.active{background:var(--gold);width:22px;border-radius:4px;}
+
+/* ─── FLOATING LEAVES ─── */
+.leaf-layer{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.fl{position:absolute;top:-60px;opacity:0;animation:leaffall linear infinite;}
+@keyframes leaffall{
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  8%{opacity:.16;}
+  92%{opacity:.1;}
+  100%{transform:translateY(108vh) rotate(540deg);opacity:0;}
+}
+
+/* ─────────────────────────────────────────
+   SLIDE CONTENT STYLES
+───────────────────────────────────────── */
+.container{max-width:940px;margin:0 auto;padding:40px 28px;}
+
+/* ─── SLIDE 1: HERO ─── */
+.slide-hero{
+  background:linear-gradient(150deg,#FF6B6B 0%,#F4A261 35%,#FFD166 65%,#FFF5C0 100%);
+  position:relative;overflow:hidden;
+}
+.hero-stars{position:absolute;inset:0;pointer-events:none;}
+.hero-inner{
+  position:relative;z-index:2;
+  min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:48px 28px 40px;text-align:center;
+}
+.module-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.55);border:1.5px solid rgba(255,255,255,.8);
+  backdrop-filter:blur(8px);color:#8B2500;
+  font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  padding:7px 20px;border-radius:50px;margin-bottom:32px;
+}
+/* Title area */
+.title-frame{
+  position:relative;display:inline-block;
+  padding:0;margin-bottom:28px;
+}
+.title-frame h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(2.2rem,5.5vw,4rem);color:var(--navy);
+  line-height:1.1; text-shadow:0 2px 0 rgba(255,255,255,.5);
+}
+.title-frame h1 span{color:var(--heart-red);display:block;}
+.title-ornament{display:none;}
+.corner-tl,.corner-tr,.corner-bl,.corner-br{display:none;}
+
+/* decorative lines under title */
+.title-deco{display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:20px;}
+.deco-line{height:2px;width:80px;background:linear-gradient(90deg,transparent,rgba(139,37,0,.4),transparent);}
+.deco-diamond{color:var(--heart-red);font-size:.7rem;}
+
+.hero-sub{color:#5C2200;font-size:1.08rem;max-width:500px;line-height:1.72;margin-bottom:36px;font-weight:500;}
+
+/* Heartbeat SVG */
+.hb-wrap{margin-bottom:32px;}
+@keyframes hbpulse{0%,100%{filter:drop-shadow(0 0 6px rgba(139,37,0,.3));}50%{filter:drop-shadow(0 0 14px rgba(139,37,0,.6));}}
+.hb-wrap svg{animation:hbpulse 1.4s ease-in-out infinite;}
+
+.hero-char-row{
+  display:flex;align-items:flex-end;justify-content:center;gap:20px;
+  flex-wrap:wrap;margin-top:8px;
+}
+.hero-bubble{
+  background:white;color:var(--text);
+  border-radius:20px 20px 20px 4px;padding:16px 22px;
+  font-size:.95rem;line-height:1.65;max-width:340px;
+  box-shadow:0 8px 28px rgba(0,0,0,.15);
+  border:2px solid rgba(255,255,255,.9);
+}
+.hero-bubble strong{color:var(--heart-red);}
+
+/* ─── GENERAL SLIDE LAYOUTS ─── */
+.slide-cream{background:var(--cream);}
+.slide-sky{background:linear-gradient(160deg,#EBF8FF,#C9EDF0);}
+.slide-forest{background:linear-gradient(145deg,#1a5c46,#2d8b68,#3aaa80);}
+.slide-mint{background:linear-gradient(150deg,#E8FAF0,var(--lmint));}
+.slide-gold{background:linear-gradient(145deg,#FFFBEB,#FFF0C8);}
+.slide-coral{background:linear-gradient(145deg,#FFF0E8,#FFD6C0);}
+.slide-warm{background:var(--warm);}
+.slide-dark{background:linear-gradient(150deg,#1B4332,#2D6A4F,#3a8862);}
+
+/* ─── SECTION TAGS ─── */
+.stag{
+  display:inline-block;background:var(--deep);color:white;
+  font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 14px;border-radius:50px;margin-bottom:14px;
+}
+.stag.red{background:var(--heart-red);}
+.stag.gold{background:#B8860B;color:white;}
+.stag.navy{background:var(--navy);}
+.stag.terra{background:var(--terra);}
+.stag.sky{background:#457B9D;}
+
+h2{font-family:'Fraunces',serif;font-size:clamp(1.7rem,3.5vw,2.6rem);line-height:1.2;margin-bottom:14px;}
+h3{font-size:1.2rem;font-weight:800;margin-bottom:10px;}
+p{line-height:1.75;margin-bottom:13px;}
+p:last-child{margin-bottom:0;}
+
+/* ─── CHARACTER + BUBBLE ─── */
+.char-row{display:flex;align-items:flex-end;gap:18px;margin:28px 0;}
+.char-row.flip{flex-direction:row-reverse;}
+.char-row.flip .cbubble{border-radius:20px 20px 4px 20px;}
+.char-fig{flex-shrink:0;width:140px;}
+.char-fig svg{width:100%;height:auto;filter:drop-shadow(0 6px 16px rgba(0,0,0,.2));}
+@keyframes heartbounce{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-8px) rotate(2deg);}}
+.char-fig{animation:heartbounce 2.8s ease-in-out infinite;}
+.cbubble{
+  background:white;border-radius:20px 20px 20px 4px;
+  padding:16px 22px;box-shadow:0 6px 22px rgba(0,0,0,.1);
+  font-size:.95rem;line-height:1.65;max-width:480px;
+  border:2px solid var(--lmint);
+}
+.cbubble strong{color:var(--deep);}
+.cbubble.red-b{border-color:#FFD0D0;}
+.cbubble.gold-b{border-color:#FFE9A0;}
+.cbubble.dark-b{background:rgba(255,255,255,.22);color:white;border-color:rgba(255,255,255,.4);}
+.cbubble.dark-b strong{color:#FFE8A0;}
+
+/* ─── CARDS ─── */
+.card{
+  background:white;border-radius:18px;padding:26px 30px;margin-bottom:18px;
+  box-shadow:0 4px 18px rgba(0,0,0,.07);border:1.5px solid rgba(0,0,0,.05);
+}
+.card.dark{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.3);color:white;}
+.card.dark h3{color:var(--gold);}
+.card.dark strong{color:#FFE8A0;}
+
+.hbox{
+  background:linear-gradient(120deg,var(--lmint),#C9EDF0);
+  border-left:5px solid var(--sage);border-radius:0 14px 14px 0;
+  padding:18px 22px;margin:18px 0;font-style:italic;font-size:1.02rem;
+}
+.hbox.gold{background:linear-gradient(120deg,#FFFBEB,#FFF3C4);border-color:var(--gold);}
+.hbox.coral{background:linear-gradient(120deg,#FFF0E8,#FFD6C0);border-color:var(--terra);}
+.hbox.dark{background:rgba(255,255,255,.2);border-color:var(--gold);color:white;}
+
+.divider{height:1px;background:rgba(0,0,0,.08);margin:22px 0;}
+
+/* ─── OUTCOMES ─── */
+.outcomes{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:10px;}
+.outcome{
+  display:flex;align-items:flex-start;gap:14px;
+  background:white;border-radius:14px;padding:16px 20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
+  border-left:5px solid var(--sage);
+  transition:transform .2s,box-shadow .2s;
+}
+.outcome:hover{transform:translateX(4px);box-shadow:0 6px 18px rgba(0,0,0,.1);}
+.onum{
+  flex-shrink:0;width:32px;height:32px;border-radius:50%;
+  background:var(--lmint);color:var(--deep);font-weight:900;font-size:.88rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.outcome p{margin:0;font-size:.95rem;}
+
+/* ─── COMM GRID ─── */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:22px;}
+.ccard{
+  background:white;border-radius:16px;padding:22px 18px;text-align:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.08);
+  transition:transform .25s,box-shadow .25s;cursor:default;
+}
+.ccard:hover{transform:translateY(-6px);box-shadow:0 10px 26px rgba(0,0,0,.13);}
+.cicon{
+  width:54px;height:54px;border-radius:50%;margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+}
+.ccard h4{font-weight:800;font-size:.97rem;margin-bottom:7px;}
+.ccard p{font-size:.85rem;color:#555;margin:0;}
+
+/* ─── MINDFULNESS ─── */
+.mbox{
+  background:white;border-radius:22px;padding:34px;
+  box-shadow:0 8px 28px rgba(0,0,0,.1);text-align:center;
+}
+.breath-wrap{position:relative;width:148px;height:148px;margin:24px auto;}
+.bring{
+  position:absolute;inset:0;border-radius:50%;
+  border:3.5px solid var(--mint);
+  animation:breathe 4.2s ease-in-out infinite;
+}
+.bring:nth-child(2){animation-delay:1.4s;opacity:.55;}
+.bring:nth-child(3){animation-delay:2.8s;opacity:.28;}
+@keyframes breathe{
+  0%,100%{transform:scale(1);border-color:var(--mint);}
+  50%{transform:scale(1.2);border-color:var(--coral);}
+}
+.binner{
+  position:absolute;inset:22px;border-radius:50%;
+  background:linear-gradient(135deg,var(--lmint),var(--sky));
+  display:flex;align-items:center;justify-content:center;font-size:2.2rem;
+}
+#timer-display{font-size:2.4rem;font-weight:900;color:var(--deep);margin:14px 0 6px;}
+#timer-label{color:#666;font-size:.92rem;margin-bottom:22px;}
+
+.steps{list-style:none;counter-reset:steps;}
+.step-item{
+  counter-increment:steps;display:flex;gap:14px;align-items:flex-start;
+  margin-bottom:14px;padding:16px 18px;background:white;border-radius:14px;
+  box-shadow:0 3px 10px rgba(0,0,0,.06);
+}
+.step-item::before{
+  content:counter(steps);flex-shrink:0;
+  width:32px;height:32px;border-radius:50%;
+  background:var(--gold);color:var(--navy);font-weight:900;font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.step-item p{margin:0;font-size:.95rem;}
+
+/* ─── BUTTONS ─── */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--deep);color:white;border:none;border-radius:50px;
+  padding:12px 26px;font-family:'DM Sans',sans-serif;font-size:.97rem;font-weight:700;
+  cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 14px rgba(45,106,79,.3);
+}
+.btn:hover{background:var(--forest);transform:translateY(-2px);box-shadow:0 8px 20px rgba(45,106,79,.38);}
+.btn:active{transform:none;}
+.btn.red-btn{background:var(--heart-red);box-shadow:0 4px 14px rgba(230,57,70,.3);}
+.btn.red-btn:hover{background:var(--heart-dark);}
+.btn.gold-btn{background:#B8860B;box-shadow:0 4px 14px rgba(184,134,11,.3);}
+.btn.coral-btn{background:var(--terra);box-shadow:0 4px 14px rgba(231,111,81,.3);}
+.btn.coral-btn:hover{background:#c45628;}
+
+/* ─── FLIP CARDS ─── */
+.flipgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:18px;}
+.flip{height:188px;perspective:1000px;cursor:pointer;}
+.flip-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1);}
+.flip:hover .flip-in,.flip.flipped .flip-in{transform:rotateY(180deg);}
+.ff,.fb{
+  position:absolute;inset:0;border-radius:16px;
+  backface-visibility:hidden;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:18px;text-align:center;
+}
+.ff{background:linear-gradient(135deg,var(--deep),var(--sage));color:white;box-shadow:0 6px 18px rgba(45,106,79,.25);}
+.ff .fi{font-size:2rem;margin-bottom:10px;}
+.ff h4{font-weight:800;font-size:.97rem;}
+.ff small{font-size:.73rem;color:rgba(255,255,255,.6);margin-top:8px;}
+.fb{background:white;transform:rotateY(180deg);border:2px solid var(--lmint);box-shadow:0 6px 18px rgba(0,0,0,.1);}
+.fb p{font-size:.86rem;line-height:1.65;}
+
+/* ─── JOURNAL ─── */
+.jbox{background:white;border-radius:18px;padding:26px 30px;box-shadow:0 4px 18px rgba(0,0,0,.08);border-top:5px solid var(--terra);}
+.jbox h3{color:var(--terra);margin-bottom:14px;}
+.jqs{list-style:none;margin-bottom:18px;}
+.jqs li{
+  padding:9px 0;border-bottom:1px dashed #ddd;
+  font-size:.95rem;display:flex;gap:10px;align-items:flex-start;
+}
+.jqs li:last-child{border-bottom:none;}
+.jqs li::before{content:'✦';color:var(--coral);flex-shrink:0;margin-top:2px;}
+textarea{
+  width:100%;min-height:130px;border-radius:12px;
+  border:2px solid #e0e0e0;padding:14px 16px;
+  font-family:'DM Sans',sans-serif;font-size:.95rem;line-height:1.65;
+  resize:vertical;background:#FAFAFA;color:var(--text);
+  transition:border-color .2s;
+}
+textarea:focus{outline:none;border-color:var(--sage);background:white;}
+
+/* ─── VIDEO ─── */
+.vwrap{background:var(--navy);border-radius:18px;padding:20px;box-shadow:0 8px 26px rgba(0,0,0,.2);}
+.vplate{
+  background:linear-gradient(135deg,#0f2942,#1a3a5c);
+  border-radius:12px;aspect-ratio:16/9;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:white;gap:14px;cursor:pointer;border:2px dashed rgba(255,255,255,.22);
+  text-decoration:none;transition:background .2s;
+}
+.vplate:hover{background:linear-gradient(135deg,#1a3a5c,#2a5a8c);}
+.play-circle{
+  width:68px;height:68px;border-radius:50%;
+  background:rgba(255,255,255,.18);border:2.5px solid white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;transition:background .2s,transform .15s;
+}
+.vplate:hover .play-circle{background:rgba(255,255,255,.32);transform:scale(1.08);}
+.vplate p{font-size:.85rem;opacity:.65;}
+
+/* ─── ASSIGNMENT ─── */
+.acard{
+  background:rgba(255,255,255,.18);
+  border:2px solid rgba(255,255,255,.3);
+  border-radius:22px;padding:38px;color:white;
+  box-shadow:0 10px 34px rgba(0,0,0,.15);
+  position:relative;overflow:hidden;
+  backdrop-filter:blur(4px);
+}
+.acard h3{color:var(--gold);font-size:1.35rem;margin-bottom:14px;}
+.acard p{color:rgba(255,255,255,.88);}
+.acard .steps .step-item{background:rgba(255,255,255,.22);color:white;}
+.acard textarea{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.4);color:white;}
+.acard textarea::placeholder{color:rgba(255,255,255,.55);}
+.acard textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.3);}
+
+/* ─── SURVEY ─── */
+.sitem{margin-bottom:22px;}
+.sitem p{font-weight:700;margin-bottom:10px;color:var(--navy);}
+.rrow{display:flex;gap:9px;flex-wrap:wrap;}
+.rbtn{
+  width:44px;height:44px;border-radius:50%;
+  border:2.5px solid var(--sage);background:white;
+  color:var(--deep);font-weight:800;font-size:.97rem;
+  cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;
+}
+.rbtn:hover,.rbtn.sel{background:var(--sage);color:white;border-color:var(--sage);transform:scale(1.1);}
+.arow{display:flex;flex-direction:column;gap:9px;}
+.aopt{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;border-radius:12px;background:white;
+  border:2px solid transparent;cursor:pointer;
+  font-size:.93rem;font-weight:600;transition:all .2s;
+}
+.aopt:hover{border-color:var(--mint);background:var(--lmint);}
+.aopt.sel{border-color:var(--sage);background:var(--lmint);}
+.aopt input{accent-color:var(--sage);width:16px;height:16px;}
+#survey-thanks{display:none;text-align:center;padding:28px;}
+#survey-thanks .ti{font-size:2.8rem;}
+#survey-thanks p{font-size:1.08rem;font-weight:700;color:var(--deep);margin-top:10px;}
+
+/* ─── SAVE FEEDBACK ─── */
+.save-ok{display:none;font-weight:700;margin-top:8px;font-size:.9rem;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:600px){
+  .char-row,.char-row.flip{flex-direction:column;align-items:center;}
+  .cbubble{border-radius:20px !important;}
+  .char-fig{width:120px;}
+  .title-frame{padding:22px 28px;}
+  .title-frame h1{font-size:1.8rem;}
+  .cgrid{grid-template-columns:1fr 1fr;}
+  .flipgrid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:380px){
+  .cgrid,.flipgrid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING LEAVES -->
+<div class="leaf-layer" id="leaf-layer"></div>
+
+<div class="app">
+
+<!-- ─── TOP NAV ─── -->
+<nav class="top-nav">
+  <div class="nav-logo">Pathways to Success</div>
+  <div class="tab-bar" id="tab-bar">
+    <button class="tab-btn active" onclick="goTo(0)">Welcome</button>
+    <button class="tab-btn" onclick="goTo(1)">Overview</button>
+    <button class="tab-btn" onclick="goTo(2)">Outcomes</button>
+    <button class="tab-btn" onclick="goTo(3)">The Science</button>
+    <button class="tab-btn" onclick="goTo(4)">Mindfulness</button>
+    <button class="tab-btn" onclick="goTo(5)">Key Concepts</button>
+    <button class="tab-btn" onclick="goTo(6)">Reflect</button>
+    <button class="tab-btn" onclick="goTo(7)">Assignment</button>
+    <button class="tab-btn" onclick="goTo(8)">Check-In</button>
+  </div>
+</nav>
+
+<!-- ─── SLIDES ─── -->
+<div class="slides-wrapper">
+<div class="slides-track" id="track">
+
+<!-- ══════ SLIDE 1: HERO / WELCOME ══════ -->
+<div class="slide slide-hero">
+  <div class="hero-stars" id="hero-stars"></div>
+  <div class="hero-inner">
+
+    <div class="module-badge">&#9830; Module 1 &nbsp;·&nbsp; Part 1: Well-Being Certificate &#9830;</div>
+
+    <div class="title-frame">
+      <span class="title-ornament">&#9830;</span>
+      <span class="title-ornament right">&#9830;</span>
+      <div class="corner-tr"></div>
+      <div class="corner-bl"></div>
+      <h1>
+        The Science of
+        <span>the Heart</span>
+      </h1>
+    </div>
+
+    <div class="title-deco">
+      <div class="deco-line"></div>
+      <span class="deco-diamond">&#9670;</span>
+      <div class="deco-line"></div>
+    </div>
+
+    <p class="hero-sub">Your heart does way more than pump blood. It talks to your brain, shapes how you feel, and holds real power over your stress and focus. Let's get into it.</p>
+
+    <!-- Heartbeat line -->
+    <div class="hb-wrap">
+      <svg width="300" height="52" viewBox="0 0 300 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0 26 L 46 26 L 60 8 L 74 46 L 88 16 L 102 42 L 116 26 L 300 26"
+              stroke="url(#hg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="hg" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#C0392B"/>
+            <stop offset="50%" stop-color="#8B2500"/>
+            <stop offset="100%" stop-color="#5C1500"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="hero-char-row">
+      <!-- HEART CHARACTER: EXCITED -->
+      <div class="char-fig" style="width:160px;">
+        <svg viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="hg1" cx="38%" cy="32%" r="65%">
+              <stop offset="0%" stop-color="#FFAABC"/>
+              <stop offset="100%" stop-color="#E8415A"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="110" cy="246" rx="55" ry="9" fill="rgba(0,0,0,0.2)"/>
+          <!-- Heart body -->
+          <path d="M 110 200 C 110 200 10 132 10 70 C 10 32 38 12 68 26 C 84 34 98 50 110 68 C 122 50 136 34 152 26 C 182 12 210 32 210 70 C 210 132 110 200 110 200 Z" fill="url(#hg1)"/>
+          <!-- highlight -->
+          <path d="M 34 48 C 36 36 48 28 60 33" stroke="rgba(255,255,255,0.45)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <!-- tiny sparkle spots -->
+          <circle cx="48" cy="40" r="3" fill="rgba(255,255,255,0.3)"/>
+          <!-- eyes WIDE/excited -->
+          <ellipse cx="82" cy="86" rx="14" ry="16" fill="white"/>
+          <ellipse cx="138" cy="86" rx="14" ry="16" fill="white"/>
+          <circle cx="84" cy="88" r="10" fill="#1a1a1a"/>
+          <circle cx="140" cy="88" r="10" fill="#1a1a1a"/>
+          <circle cx="88" cy="83" r="3.5" fill="white"/>
+          <circle cx="144" cy="83" r="3.5" fill="white"/>
+          <!-- raised eyebrows -->
+          <path d="M 70 70 Q 82 62 94 70" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M 126 70 Q 138 62 150 70" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <!-- big grin -->
+          <path d="M 84 116 Q 110 136 136 116" stroke="#1a1a1a" stroke-width="3.5" fill="rgba(255,180,150,0.45)" stroke-linecap="round"/>
+          <!-- cheeks -->
+          <ellipse cx="64" cy="110" rx="14" ry="9" fill="rgba(255,80,140,0.42)"/>
+          <ellipse cx="156" cy="110" rx="14" ry="9" fill="rgba(255,80,140,0.42)"/>
+          <!-- ARMS UP - excited -->
+          <path d="M 16 90 Q 2 70 8 48" stroke="url(#hg1)" stroke-width="16" fill="none" stroke-linecap="round"/>
+          <circle cx="8" cy="44" r="11" fill="#FF7A9A"/>
+          <path d="M 204 90 Q 218 70 212 48" stroke="url(#hg1)" stroke-width="16" fill="none" stroke-linecap="round"/>
+          <circle cx="212" cy="44" r="11" fill="#FF7A9A"/>
+          <!-- legs -->
+          <path d="M 94 196 Q 84 218 78 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="76" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <path d="M 126 196 Q 136 218 142 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="144" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <!-- sparkles around -->
+          <text x="180" y="52" font-size="16">&#10024;</text>
+          <text x="16" y="46" font-size="14">&#11088;</text>
+        </svg>
+      </div>
+      <div class="hero-bubble">
+        <strong>Hey — I'm Cora.</strong><br/>
+        I'll be right here with you through every slide. We're about to get into something that actually matters: your heart, your brain, and how they work together. Let's go.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════ SLIDE 2: OVERVIEW ══════ -->
+<div class="slide slide-cream">
+  <div class="container">
+    <div class="stag">Module Overview</div>
+    <h2>Take Heart</h2>
+
+    <div class="char-row flip">
+      <!-- HEART CHARACTER: CALM / HAND ON CHEST -->
+      <div class="char-fig">
+        <svg viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="hg2" cx="38%" cy="32%" r="65%">
+              <stop offset="0%" stop-color="#FFAABC"/>
+              <stop offset="100%" stop-color="#E8415A"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="110" cy="246" rx="55" ry="9" fill="rgba(0,0,0,0.15)"/>
+          <path d="M 110 200 C 110 200 10 132 10 70 C 10 32 38 12 68 26 C 84 34 98 50 110 68 C 122 50 136 34 152 26 C 182 12 210 32 210 70 C 210 132 110 200 110 200 Z" fill="url(#hg2)"/>
+          <path d="M 34 48 C 36 36 48 28 60 33" stroke="rgba(255,255,255,0.45)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <!-- half-closed / serene eyes -->
+          <ellipse cx="82" cy="90" rx="14" ry="10" fill="white"/>
+          <ellipse cx="138" cy="90" rx="14" ry="10" fill="white"/>
+          <circle cx="83" cy="92" r="7" fill="#1a1a1a"/>
+          <circle cx="139" cy="92" r="7" fill="#1a1a1a"/>
+          <circle cx="86" cy="89" r="2.5" fill="white"/>
+          <circle cx="142" cy="89" r="2.5" fill="white"/>
+          <!-- gentle brows -->
+          <path d="M 72 78 Q 82 73 92 78" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M 128 78 Q 138 73 148 78" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- soft smile -->
+          <path d="M 90 116 Q 110 130 130 116" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="64" cy="108" rx="12" ry="8" fill="rgba(255,80,140,0.38)"/>
+          <ellipse cx="156" cy="108" rx="12" ry="8" fill="rgba(255,80,140,0.38)"/>
+          <!-- hand on chest / left arm bent -->
+          <path d="M 14 92 Q 2 78 10 58" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="10" cy="54" r="10" fill="#FF7A9A"/>
+          <!-- right arm relaxed down -->
+          <path d="M 206 100 Q 218 116 214 134" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="213" cy="136" r="10" fill="#FF7A9A"/>
+          <!-- legs -->
+          <path d="M 94 196 Q 84 218 78 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="76" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <path d="M 126 196 Q 136 218 142 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="144" cy="234" rx="13" ry="8" fill="#E8415A"/>
+        </svg>
+      </div>
+      <div class="cbubble" style="border-radius:20px 20px 4px 20px;">
+        <strong>Before we start —</strong><br/>
+        Take one real breath. Not a fake one. Just slow it down for a second. Whatever you're carrying today, you can set it down here. This space is for you.
+      </div>
+    </div>
+
+    <div class="hbox gold">
+      "Your heart already knows more than you think. The work here is learning how to actually listen to it."
+    </div>
+
+    <div class="card">
+      <p>The heart is such a powerful organ — and its mysteries continue to unfold. In the last two decades, scientists have discovered more and more about how it works: its physiology, its conductivity, and how it regulates our emotions.</p>
+      <p>You may already know that the heart pumps blood, oxygen, and nutrients throughout the body. But the heart is responsible for far more than circulation alone. Scientists now understand that the heart also plays a vital role in <strong>how we feel, how we respond to stress, and how well we think and focus.</strong></p>
+      <p>Over the next two to three weeks, we will explore the heart beyond its muscular function — how it communicates with the brain, how it helps us build resilience, and how heart-based skills can improve our overall health and well-being.</p>
+    </div>
+
+    <div style="background:white;border-radius:16px;padding:22px 26px;margin-top:18px;box-shadow:0 4px 16px rgba(0,0,0,.07);border-left:5px solid var(--heart-red);">
+      <h3 style="color:var(--heart-red);">This module covers 2–3 weeks</h3>
+      <p style="margin:8px 0 0;color:#555;">Expect to invest about <strong>2–4 hours per week</strong> in coursework, reflection, and optional deepening exercises.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SLIDE 3: LEARNING OUTCOMES ══════ -->
+<div class="slide slide-sky">
+  <div class="container">
+    <div class="stag navy">Learning Outcomes</div>
+    <h2>By the End of This Module, You Will…</h2>
+    <p style="color:#555;margin-bottom:22px;">These outcomes are guided by Bloom's Taxonomy — building from understanding toward real-world action.</p>
+    <ul class="outcomes">
+      <li class="outcome">
+        <div class="onum">1</div>
+        <p><strong>Explain</strong> how the heart communicates with the brain and body in multiple ways</p>
+      </li>
+      <li class="outcome" style="border-color:var(--heart-red);">
+        <div class="onum" style="background:#FFD0D0;color:#8a0000;">2</div>
+        <p><strong>Describe</strong> how emotions influence heart rhythms and stress responses</p>
+      </li>
+      <li class="outcome" style="border-color:var(--gold);">
+        <div class="onum" style="background:#FFF3C4;color:#7a5000;">3</div>
+        <p><strong>Identify</strong> the connection between emotional regulation and resilience</p>
+      </li>
+      <li class="outcome" style="border-color:var(--sky);">
+        <div class="onum" style="background:#C9EDF0;color:#1a5060;">4</div>
+        <p><strong>Practice</strong> simple heart-based techniques to support calm, focus, and emotional balance</p>
+      </li>
+      <li class="outcome" style="border-color:#9B59B6;">
+        <div class="onum" style="background:#EDD6F8;color:#5a1280;">5</div>
+        <p><strong>Apply</strong> heart-focused self-regulation skills to everyday situations — school, work, relationships, and decision-making</p>
+      </li>
+    </ul>
+
+    <div class="char-row" style="margin-top:32px;">
+      <!-- HEART CHARACTER: POINTING/TEACHING -->
+      <div class="char-fig">
+        <svg viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="hg3" cx="38%" cy="32%" r="65%"><stop offset="0%" stop-color="#FF7B7B"/><stop offset="100%" stop-color="#C0392B"/></radialGradient></defs>
+          <ellipse cx="110" cy="246" rx="55" ry="9" fill="rgba(0,0,0,0.15)"/>
+          <path d="M 110 200 C 110 200 10 132 10 70 C 10 32 38 12 68 26 C 84 34 98 50 110 68 C 122 50 136 34 152 26 C 182 12 210 32 210 70 C 210 132 110 200 110 200 Z" fill="url(#hg3)"/>
+          <path d="M 34 48 C 36 36 48 28 60 33" stroke="rgba(255,255,255,0.45)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <ellipse cx="82" cy="88" rx="13" ry="14" fill="white"/>
+          <ellipse cx="138" cy="88" rx="13" ry="14" fill="white"/>
+          <circle cx="84" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="140" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="87" cy="86" r="3" fill="white"/>
+          <circle cx="143" cy="86" r="3" fill="white"/>
+          <path d="M 70 74 Q 82 67 94 74" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M 126 74 Q 138 67 150 74" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M 86 116 Q 110 132 134 116" stroke="#1a1a1a" stroke-width="3.5" fill="rgba(255,180,150,0.4)" stroke-linecap="round"/>
+          <ellipse cx="64" cy="110" rx="13" ry="8" fill="rgba(255,80,140,0.38)"/>
+          <ellipse cx="156" cy="110" rx="13" ry="8" fill="rgba(255,80,140,0.38)"/>
+          <!-- right arm pointing up -->
+          <path d="M 204 95 Q 220 72 214 50" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="213" cy="46" r="10" fill="#FF7A9A"/>
+          <!-- left arm relaxed -->
+          <path d="M 16 96 Q 2 110 4 128" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="4" cy="130" r="10" fill="#FF7A9A"/>
+          <path d="M 94 196 Q 84 218 78 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="76" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <path d="M 126 196 Q 136 218 142 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="144" cy="234" rx="13" ry="8" fill="#E8415A"/>
+        </svg>
+      </div>
+      <div class="cbubble">
+        <strong>Real talk —</strong><br/>
+        These aren't just "objectives." By the end of this, you'll have actual tools you can use — at school, at work, in your relationships, when things get hard. That's the whole point.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SLIDE 4: THE SCIENCE ══════ -->
+<div class="slide slide-forest">
+  <div class="container">
+    <div class="stag gold">Learning Segment 1</div>
+    <h2 style="color:white;">The Heart Is More Than a Pump</h2>
+
+    <div class="char-row flip">
+      <!-- HEART CHARACTER: CURIOUS/THINKING -->
+      <div class="char-fig">
+        <svg viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="hg4" cx="38%" cy="32%" r="65%"><stop offset="0%" stop-color="#FF7B7B"/><stop offset="100%" stop-color="#C0392B"/></radialGradient></defs>
+          <ellipse cx="110" cy="246" rx="55" ry="9" fill="rgba(0,0,0,0.2)"/>
+          <path d="M 110 200 C 110 200 10 132 10 70 C 10 32 38 12 68 26 C 84 34 98 50 110 68 C 122 50 136 34 152 26 C 182 12 210 32 210 70 C 210 132 110 200 110 200 Z" fill="url(#hg4)"/>
+          <path d="M 34 48 C 36 36 48 28 60 33" stroke="rgba(255,255,255,0.45)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <!-- one eye wide, one squinted - curious -->
+          <ellipse cx="82" cy="88" rx="14" ry="15" fill="white"/>
+          <ellipse cx="138" cy="88" rx="10" ry="11" fill="white"/>
+          <circle cx="84" cy="90" r="10" fill="#1a1a1a"/>
+          <circle cx="140" cy="90" r="7" fill="#1a1a1a"/>
+          <circle cx="88" cy="85" r="3.5" fill="white"/>
+          <circle cx="143" cy="86" r="2.5" fill="white"/>
+          <!-- one brow raised -->
+          <path d="M 70 73 Q 82 64 94 72" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M 128 78 Q 138 74 148 78" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- hmm mouth -->
+          <path d="M 90 118 Q 106 126 128 118" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="64" cy="110" rx="12" ry="8" fill="rgba(255,80,140,0.38)"/>
+          <!-- arm on chin -->
+          <path d="M 16 94 Q 4 78 12 56" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="12" cy="52" r="10" fill="#FF7A9A"/>
+          <path d="M 204 100 Q 218 116 212 136" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="211" cy="138" r="10" fill="#FF7A9A"/>
+          <path d="M 94 196 Q 84 218 78 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="76" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <path d="M 126 196 Q 136 218 142 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="144" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <text x="158" y="52" font-size="18" fill="#FFD166">?</text>
+        </svg>
+      </div>
+      <div class="cbubble dark-b">
+        <strong>Yeah — the heart talks.</strong><br/>
+        Scientists used to think the heart's only job was pumping blood. Turns out, it's sending more messages to your brain than your brain sends back. Wild, right?
+      </div>
+    </div>
+
+    <div class="card dark">
+      <p>The heart constantly sends messages to the brain. In fact, <strong>it sends more information to the brain than the brain sends to the heart.</strong> These messages help shape how we feel, how we think, and how we respond to the world around us.</p>
+    </div>
+
+    <div class="hbox dark">
+      Your heart is not just reacting to your thoughts — <strong>it is actively helping guide your experiences.</strong>
+    </div>
+
+    <h3 style="color:var(--gold);margin:24px 0 16px;">The Heart Communicates in 4 Powerful Ways</h3>
+    <div class="cgrid">
+      <div class="ccard">
+        <div class="cicon" style="background:#D8F3DC;">&#9889;</div>
+        <h4>Nervous System</h4>
+        <p>Direct signals travel through nerves connecting the heart to the brain</p>
+      </div>
+      <div class="ccard">
+        <div class="cicon" style="background:#FFF3C4;">&#129514;</div>
+        <h4>Chemical Signals</h4>
+        <p>Hormones released by the heart travel through the bloodstream</p>
+      </div>
+      <div class="ccard">
+        <div class="cicon" style="background:#FFD6C0;">&#127754;</div>
+        <h4>Physical Signals</h4>
+        <p>Pressure waves in blood flow carry information throughout the body</p>
+      </div>
+      <div class="ccard">
+        <div class="cicon" style="background:#C9EDF0;">&#128302;</div>
+        <h4>Energy Signals</h4>
+        <p>Electrical and magnetic fields generated by the heart extend beyond the body</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SLIDE 5: MINDFULNESS ══════ -->
+<div class="slide slide-mint">
+  <div class="container">
+    <div class="stag">Mindfulness Moment</div>
+    <h2>Listening to the Heart</h2>
+    <p style="color:var(--deep);font-weight:600;">Take 5 minutes. This is your time.</p>
+
+    <div class="char-row">
+      <!-- HEART CHARACTER: SERENE/MEDITATION -->
+      <div class="char-fig">
+        <svg viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="hg5" cx="38%" cy="32%" r="65%"><stop offset="0%" stop-color="#FF9999"/><stop offset="100%" stop-color="#C0392B"/></radialGradient></defs>
+          <ellipse cx="110" cy="246" rx="55" ry="9" fill="rgba(0,0,0,0.12)"/>
+          <path d="M 110 200 C 110 200 10 132 10 70 C 10 32 38 12 68 26 C 84 34 98 50 110 68 C 122 50 136 34 152 26 C 182 12 210 32 210 70 C 210 132 110 200 110 200 Z" fill="url(#hg5)"/>
+          <path d="M 34 48 C 36 36 48 28 60 33" stroke="rgba(255,255,255,0.45)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <!-- closed / zen eyes -->
+          <path d="M 70 88 Q 82 80 94 88" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M 126 88 Q 138 80 150 88" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M 72 90 Q 82 83 92 90" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M 128 90 Q 138 83 148 90" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- gentle smile -->
+          <path d="M 92 116 Q 110 128 128 116" stroke="#1a1a1a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- soft brows -->
+          <path d="M 72 78 Q 82 74 92 78" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M 128 78 Q 138 74 148 78" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="64" cy="108" rx="12" ry="8" fill="rgba(255,100,100,0.25)"/>
+          <ellipse cx="156" cy="108" rx="12" ry="8" fill="rgba(255,100,100,0.25)"/>
+          <!-- arms in meditation -->
+          <path d="M 14 94 Q 2 112 6 134" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <ellipse cx="10" cy="136" rx="12" ry="7" fill="#FF7A9A"/>
+          <path d="M 206 94 Q 218 112 214 134" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <ellipse cx="210" cy="136" rx="12" ry="7" fill="#FF7A9A"/>
+          <path d="M 94 196 Q 84 218 78 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="76" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <path d="M 126 196 Q 136 218 142 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="144" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <!-- zen circles -->
+          <circle cx="44" cy="52" r="4" fill="rgba(255,255,255,0.25)"/>
+          <circle cx="176" cy="52" r="4" fill="rgba(255,255,255,0.25)"/>
+        </svg>
+      </div>
+      <div class="cbubble">
+        <strong>No rushing this one.</strong><br/>
+        Put your hand on your chest. Breathe slow. You're not trying to fix anything right now — just noticing. That's literally all. You've got it.
+      </div>
+    </div>
+
+    <div class="mbox">
+      <div class="breath-wrap">
+        <div class="bring"></div>
+        <div class="bring"></div>
+        <div class="bring"></div>
+        <div class="binner">&#128153;</div>
+      </div>
+      <div id="timer-display">5:00</div>
+      <div id="timer-label">Press Start when you're ready</div>
+      <button class="btn" id="timer-btn" onclick="toggleTimer()">&#9654; Start</button>
+
+      <div class="divider" style="margin-top:28px;"></div>
+      <h3 style="margin-bottom:14px;">Steps</h3>
+      <ul class="steps">
+        <li class="step-item"><p>Sit quietly and place one hand on your chest</p></li>
+        <li class="step-item"><p>Take slow, steady breaths for one minute</p></li>
+        <li class="step-item"><p>Notice: does your heartbeat feel fast, slow, or steady?</p></li>
+        <li class="step-item"><p>Write your reflection in the prompts below</p></li>
+      </ul>
+      <div class="divider"></div>
+      <h3 style="margin-bottom:10px;text-align:left;">Reflection</h3>
+      <ul class="jqs" style="margin-bottom:14px;">
+        <li>What emotions were you feeling <em>before</em> the exercise?</li>
+        <li>Did anything shift after slowing your breathing?</li>
+      </ul>
+      <textarea placeholder="Write your thoughts here... there are no wrong answers" id="mind-ref"></textarea>
+      <div style="text-align:right;margin-top:10px;">
+        <button class="btn" style="font-size:.88rem;padding:10px 20px;" onclick="sv('mind-ref','mind-ok')">Save reflection &#10003;</button>
+      </div>
+      <div class="save-ok" id="mind-ok" style="color:var(--sage);">&#10003; Reflection saved!</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SLIDE 6: KEY CONCEPTS ══════ -->
+<div class="slide slide-gold">
+  <div class="container">
+    <div class="stag gold">Core Concepts</div>
+    <h2>Key Ideas to Know</h2>
+    <p style="color:#555;">Hover or tap each card to flip it and see the definition!</p>
+
+    <div class="char-row flip" style="margin-top:16px;">
+      <!-- HEART CHARACTER: HAPPY/TEACHING -->
+      <div class="char-fig">
+        <svg viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="hg6" cx="38%" cy="32%" r="65%"><stop offset="0%" stop-color="#FF7B7B"/><stop offset="100%" stop-color="#C0392B"/></radialGradient></defs>
+          <ellipse cx="110" cy="246" rx="55" ry="9" fill="rgba(0,0,0,0.15)"/>
+          <path d="M 110 200 C 110 200 10 132 10 70 C 10 32 38 12 68 26 C 84 34 98 50 110 68 C 122 50 136 34 152 26 C 182 12 210 32 210 70 C 210 132 110 200 110 200 Z" fill="url(#hg6)"/>
+          <path d="M 34 48 C 36 36 48 28 60 33" stroke="rgba(255,255,255,0.45)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <ellipse cx="82" cy="88" rx="13" ry="14" fill="white"/>
+          <ellipse cx="138" cy="88" rx="13" ry="14" fill="white"/>
+          <circle cx="84" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="140" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="87" cy="86" r="3" fill="white"/>
+          <circle cx="143" cy="86" r="3" fill="white"/>
+          <path d="M 72 74 Q 82 68 92 74" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M 128 74 Q 138 68 148 74" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M 86 116 Q 110 132 134 116" stroke="#1a1a1a" stroke-width="3.5" fill="rgba(255,180,150,0.4)" stroke-linecap="round"/>
+          <ellipse cx="64" cy="110" rx="12" ry="8" fill="rgba(255,80,140,0.38)"/>
+          <ellipse cx="156" cy="110" rx="12" ry="8" fill="rgba(255,80,140,0.38)"/>
+          <path d="M 204 95 Q 220 74 214 52" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="213" cy="48" r="10" fill="#FF7A9A"/>
+          <path d="M 16 98 Q 2 116 6 136" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="6" cy="138" r="10" fill="#FF7A9A"/>
+          <path d="M 94 196 Q 84 218 78 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="76" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <path d="M 126 196 Q 136 218 142 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="144" cy="234" rx="13" ry="8" fill="#E8415A"/>
+        </svg>
+      </div>
+      <div class="cbubble gold-b" style="border-radius:20px 20px 4px 20px;">
+        <strong>Four terms. That's it.</strong><br/>
+        These are the building blocks for everything in this module. Hover or tap to flip and see what they actually mean — in plain language, not textbook talk.
+      </div>
+    </div>
+
+    <div class="flipgrid">
+      <div class="flip" onclick="this.classList.toggle('flipped')">
+        <div class="flip-in">
+          <div class="ff"><div class="fi">&#129309;</div><h4>Heart–Brain Communication</h4><small>tap to flip</small></div>
+          <div class="fb"><p>The constant exchange of information between the heart and brain that affects how we feel, think, and respond to stress. The heart guides the brain — not just the other way around.</p></div>
+        </div>
+      </div>
+      <div class="flip" onclick="this.classList.toggle('flipped')">
+        <div class="flip-in">
+          <div class="ff" style="background:linear-gradient(135deg,#457B9D,#2C6E8A);"><div class="fi">&#9889;</div><h4>Nervous System</h4><small>tap to flip</small></div>
+          <div class="fb" style="border-color:#C9EDF0;"><p>The body's message system of the brain, spinal cord, and nerves. Sends fast signals to control movement, thoughts, and emotions — deeply connected to the heart.</p></div>
+        </div>
+      </div>
+      <div class="flip" onclick="this.classList.toggle('flipped')">
+        <div class="flip-in">
+          <div class="ff" style="background:linear-gradient(135deg,#E76F51,#b84020);"><div class="fi">&#129514;</div><h4>Hormones</h4><small>tap to flip</small></div>
+          <div class="fb" style="border-color:#FFD6C0;"><p>Chemical messengers that travel through the bloodstream and change how the body feels and functions — including stress responses, mood, energy, and heart rate.</p></div>
+        </div>
+      </div>
+      <div class="flip" onclick="this.classList.toggle('flipped')">
+        <div class="flip-in">
+          <div class="ff" style="background:linear-gradient(135deg,#B8860B,#8a6000);"><div class="fi">&#8596;&#65039;</div><h4>Two-Way Signaling</h4><small>tap to flip</small></div>
+          <div class="fb" style="border-color:#FFF3C4;"><p>Communication that flows in both directions between heart and brain. Each sends messages that influence the other — it's a true partnership, not a one-way street.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SLIDE 7: VIDEO + REFLECTION ══════ -->
+<div class="slide slide-coral">
+  <div class="container">
+    <div class="stag terra">Practice & Application</div>
+    <h2>Watch &amp; Reflect</h2>
+
+    <div class="vwrap" style="margin-bottom:22px;">
+      <p style="color:rgba(255,255,255,.7);margin-bottom:14px;font-size:.88rem;">&#9654; Click below to open the video on YouTube</p>
+      <a href="https://www.youtube.com/results?search_query=The+Pacemaker+of+the+Heart+SA+and+AV+Nodes+Made+EASY" target="_blank" style="text-decoration:none;">
+        <div class="vplate">
+          <div class="play-circle">&#9654;</div>
+          <strong style="font-size:1.05rem;">The Pacemaker of the Heart</strong>
+          <p>SA and AV Nodes Made EASY!</p>
+          <p style="font-size:.78rem;margin-top:2px;">Opens in YouTube &#8594;</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="char-row">
+      <!-- HEART CHARACTER: WARM/ENCOURAGING -->
+      <div class="char-fig">
+        <svg viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="hg7" cx="38%" cy="32%" r="65%"><stop offset="0%" stop-color="#FF7B7B"/><stop offset="100%" stop-color="#C0392B"/></radialGradient></defs>
+          <ellipse cx="110" cy="246" rx="55" ry="9" fill="rgba(0,0,0,0.14)"/>
+          <path d="M 110 200 C 110 200 10 132 10 70 C 10 32 38 12 68 26 C 84 34 98 50 110 68 C 122 50 136 34 152 26 C 182 12 210 32 210 70 C 210 132 110 200 110 200 Z" fill="url(#hg7)"/>
+          <path d="M 34 48 C 36 36 48 28 60 33" stroke="rgba(255,255,255,0.45)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <ellipse cx="82" cy="88" rx="13" ry="14" fill="white"/>
+          <ellipse cx="138" cy="88" rx="13" ry="14" fill="white"/>
+          <circle cx="84" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="140" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="87" cy="86" r="3" fill="white"/>
+          <circle cx="143" cy="86" r="3" fill="white"/>
+          <path d="M 72 74 Q 82 68 92 74" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M 128 74 Q 138 68 148 74" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M 84 116 Q 110 134 136 116" stroke="#1a1a1a" stroke-width="3.5" fill="rgba(255,180,150,0.4)" stroke-linecap="round"/>
+          <ellipse cx="60" cy="110" rx="14" ry="9" fill="rgba(255,80,140,0.42)"/>
+          <ellipse cx="160" cy="110" rx="14" ry="9" fill="rgba(255,80,140,0.42)"/>
+          <path d="M 14 92 Q 0 76 8 52" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="8" cy="48" r="10" fill="#FF7A9A"/>
+          <path d="M 206 92 Q 220 76 212 52" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="212" cy="48" r="10" fill="#FF7A9A"/>
+          <path d="M 94 196 Q 84 218 78 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="76" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <path d="M 126 196 Q 136 218 142 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="144" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <text x="178" y="52" font-size="14">&#11088;</text>
+        </svg>
+      </div>
+      <div class="cbubble red-b">
+        <strong>Sit with it for a second.</strong><br/>
+        Don't rush into the journal the moment the video ends. Let it land. Then come back and write whatever's actually on your mind — messy is fine, perfect is not the goal.
+      </div>
+    </div>
+
+    <div class="jbox">
+      <h3>Reflection</h3>
+      <ul class="jqs">
+        <li>What thoughts, feelings, and emotions came up while you watched?</li>
+        <li>Does any part of the video resonate with your own life?</li>
+        <li>What one gem could you extract from this video and apply in your own life?</li>
+        <li>What are some practical ways you can integrate this message into your daily life?</li>
+      </ul>
+      <textarea placeholder="Your reflection... let it flow" id="vid-ref"></textarea>
+      <div style="text-align:right;margin-top:10px;">
+        <button class="btn coral-btn" style="font-size:.88rem;padding:10px 20px;" onclick="sv('vid-ref','vid-ok')">Save reflection &#10003;</button>
+      </div>
+      <div class="save-ok" id="vid-ok" style="color:var(--terra);">&#10003; Reflection saved!</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SLIDE 8: HOME ASSIGNMENT ══════ -->
+<div class="slide slide-dark">
+  <div class="container">
+    <div class="stag gold">Home Assignment</div>
+    <h2 style="color:white;">Passing It On</h2>
+
+    <div class="char-row flip">
+      <!-- HEART CHARACTER: WARM ARMS OUT -->
+      <div class="char-fig">
+        <svg viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="hg8" cx="38%" cy="32%" r="65%"><stop offset="0%" stop-color="#FF9999"/><stop offset="100%" stop-color="#C0392B"/></radialGradient></defs>
+          <ellipse cx="110" cy="246" rx="55" ry="9" fill="rgba(0,0,0,0.2)"/>
+          <path d="M 110 200 C 110 200 10 132 10 70 C 10 32 38 12 68 26 C 84 34 98 50 110 68 C 122 50 136 34 152 26 C 182 12 210 32 210 70 C 210 132 110 200 110 200 Z" fill="url(#hg8)"/>
+          <path d="M 34 48 C 36 36 48 28 60 33" stroke="rgba(255,255,255,0.45)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <ellipse cx="82" cy="88" rx="13" ry="14" fill="white"/>
+          <ellipse cx="138" cy="88" rx="13" ry="14" fill="white"/>
+          <circle cx="84" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="140" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="87" cy="86" r="3" fill="white"/>
+          <circle cx="143" cy="86" r="3" fill="white"/>
+          <path d="M 72 74 Q 82 68 92 74" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M 128 74 Q 138 68 148 74" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M 82 118 Q 110 136 138 118" stroke="#1a1a1a" stroke-width="3.5" fill="rgba(255,180,150,0.4)" stroke-linecap="round"/>
+          <ellipse cx="60" cy="110" rx="14" ry="9" fill="rgba(255,80,140,0.42)"/>
+          <ellipse cx="160" cy="110" rx="14" ry="9" fill="rgba(255,80,140,0.42)"/>
+          <!-- arms wide open -->
+          <path d="M 14 90 Q 0 100 2 120" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <ellipse cx="4" cy="122" rx="12" ry="7" fill="#FF7A9A"/>
+          <path d="M 206 90 Q 220 100 218 120" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <ellipse cx="216" cy="122" rx="12" ry="7" fill="#FF7A9A"/>
+          <path d="M 94 196 Q 84 218 78 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="76" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <path d="M 126 196 Q 136 218 142 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="144" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <text x="88" y="156" font-size="16">&#10024;</text>
+        </svg>
+      </div>
+      <div class="cbubble dark-b">
+        <strong>Someone in your life needs this.</strong><br/>
+        Think of a person — a younger sibling, a friend going through it, someone who doesn't hear it enough. You don't need a speech. Just tell them they matter. That's it.
+      </div>
+    </div>
+
+    <div class="acard">
+      <h3>Is there a young person in your life who could benefit from being reminded of their worthiness?</h3>
+      <p style="margin-top:10px;">Take a moment to connect with them and remind them that they are <strong style="color:var(--gold);">priceless</strong>. Then come back and tell us about it.</p>
+      <ul class="steps" style="margin-top:22px;counter-reset:steps;">
+        <li class="step-item"><p>Think of someone — a younger sibling, a cousin, a neighbor, a friend going through it</p></li>
+        <li class="step-item"><p>Reach out — in person, by text, by call. Tell them they matter and why</p></li>
+        <li class="step-item"><p>Notice their reaction — their face, their body language, what they say</p></li>
+        <li class="step-item"><p>Come back here and share what happened</p></li>
+      </ul>
+      <p style="margin-top:24px;color:var(--gold);font-weight:700;">What happened? How did they react? Did you notice any changes in their facial and body language?</p>
+      <textarea placeholder="Share your experience here..." id="assign-ref"></textarea>
+      <div style="text-align:right;margin-top:12px;">
+        <button class="btn gold-btn" onclick="sv('assign-ref','assign-ok')">Submit my experience &#10003;</button>
+      </div>
+      <div class="save-ok" id="assign-ok" style="color:var(--gold);">&#10003; Submitted! Thank you for showing up for someone today.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SLIDE 9: SURVEY ══════ -->
+<div class="slide slide-warm">
+  <div class="container">
+    <div class="stag">Quick Check-In</div>
+    <h2>How Are You Feeling?</h2>
+    <p style="color:#555;margin-bottom:22px;">This quick survey helps us make the experience better for you. About 2 minutes.</p>
+
+    <div class="char-row flip">
+      <!-- HEART CHARACTER: CHEERFUL THUMBSUP -->
+      <div class="char-fig">
+        <svg viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="hg9" cx="38%" cy="32%" r="65%"><stop offset="0%" stop-color="#FF7B7B"/><stop offset="100%" stop-color="#C0392B"/></radialGradient></defs>
+          <ellipse cx="110" cy="246" rx="55" ry="9" fill="rgba(0,0,0,0.14)"/>
+          <path d="M 110 200 C 110 200 10 132 10 70 C 10 32 38 12 68 26 C 84 34 98 50 110 68 C 122 50 136 34 152 26 C 182 12 210 32 210 70 C 210 132 110 200 110 200 Z" fill="url(#hg9)"/>
+          <path d="M 34 48 C 36 36 48 28 60 33" stroke="rgba(255,255,255,0.45)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <ellipse cx="82" cy="88" rx="13" ry="14" fill="white"/>
+          <ellipse cx="138" cy="88" rx="13" ry="14" fill="white"/>
+          <circle cx="84" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="140" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="87" cy="86" r="3" fill="white"/>
+          <circle cx="143" cy="86" r="3" fill="white"/>
+          <path d="M 72 72 Q 82 64 92 72" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M 128 72 Q 138 64 148 72" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M 82 118 Q 110 136 138 118" stroke="#1a1a1a" stroke-width="3.5" fill="rgba(255,180,150,0.45)" stroke-linecap="round"/>
+          <ellipse cx="60" cy="110" rx="14" ry="9" fill="rgba(255,80,140,0.42)"/>
+          <ellipse cx="160" cy="110" rx="14" ry="9" fill="rgba(255,80,140,0.42)"/>
+          <!-- thumbs up arm -->
+          <path d="M 204 96 Q 220 72 214 50" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <text x="200" y="50" font-size="20">&#128077;</text>
+          <path d="M 16 100 Q 2 118 6 140" stroke="#FF7A9A" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <ellipse cx="6" cy="142" rx="11" ry="7" fill="#FF7A9A"/>
+          <path d="M 94 196 Q 84 218 78 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="76" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <path d="M 126 196 Q 136 218 142 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="144" cy="234" rx="13" ry="8" fill="#E8415A"/>
+          <text x="16" y="50" font-size="14">&#11088;</text>
+        </svg>
+      </div>
+      <div class="cbubble" style="border-radius:20px 20px 4px 20px;">
+        <strong>You made it through Segment 1.</strong><br/>
+        For real — that matters. Before you go, drop some honest feedback below. Not "what sounds good" feedback. What you actually thought. It helps us make this better for real.
+      </div>
+    </div>
+
+    <div class="card">
+      <div id="survey-form">
+        <div class="sitem">
+          <p>1. How would you rate your understanding of how the heart communicates with the brain?</p>
+          <div class="rrow">
+            <button class="rbtn" onclick="selR(this,'q1')">1</button>
+            <button class="rbtn" onclick="selR(this,'q1')">2</button>
+            <button class="rbtn" onclick="selR(this,'q1')">3</button>
+            <button class="rbtn" onclick="selR(this,'q1')">4</button>
+            <button class="rbtn" onclick="selR(this,'q1')">5</button>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;color:#888;margin-top:5px;"><span>Not at all</span><span>Very well</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="sitem">
+          <p>2. The mindfulness activity helped me connect with my body and emotions.</p>
+          <div class="arow">
+            <label class="aopt"><input type="radio" name="q2" onclick="selA(this)"/> Strongly Agree</label>
+            <label class="aopt"><input type="radio" name="q2" onclick="selA(this)"/> Agree</label>
+            <label class="aopt"><input type="radio" name="q2" onclick="selA(this)"/> Neutral</label>
+            <label class="aopt"><input type="radio" name="q2" onclick="selA(this)"/> Disagree</label>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="sitem">
+          <p>3. How engaging did you find this learning experience overall?</p>
+          <div class="rrow">
+            <button class="rbtn" onclick="selR(this,'q3')">1</button>
+            <button class="rbtn" onclick="selR(this,'q3')">2</button>
+            <button class="rbtn" onclick="selR(this,'q3')">3</button>
+            <button class="rbtn" onclick="selR(this,'q3')">4</button>
+            <button class="rbtn" onclick="selR(this,'q3')">5</button>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;color:#888;margin-top:5px;"><span>Not engaging</span><span>Very engaging</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="sitem">
+          <p>4. One thing I'm taking away from this module is…</p>
+          <textarea style="min-height:100px;" placeholder="Share one insight, idea, or feeling..."></textarea>
+        </div>
+        <div style="text-align:center;margin-top:20px;">
+          <button class="btn red-btn" onclick="submitSurvey()">Submit Feedback</button>
+        </div>
+      </div>
+      <div id="survey-thanks">
+        <div class="ti">&#10024;</div>
+        <p>Thank you! Your feedback helps grow this program.</p>
+        <p style="font-weight:400;color:#555;font-size:.93rem;margin-top:8px;">See you in the next segment — you're doing amazing.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /slides-track -->
+</div><!-- /slides-wrapper -->
+
+<!-- ─── BOTTOM NAV ─── -->
+<div class="bottom-nav">
+  <button class="arrow-btn" id="prev-btn" onclick="goTo(cur-1)" disabled>&#8592;</button>
+  <div class="dots" id="dots"></div>
+  <button class="arrow-btn" id="next-btn" onclick="goTo(cur+1)">&#8594;</button>
+</div>
+
+</div><!-- /app -->
+
+<script>
+// ─── SLIDE ENGINE ───
+let cur = 0;
+const TOTAL = 9;
+const track = document.getElementById('track');
+const tabs  = document.querySelectorAll('.tab-btn');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const dotsEl  = document.getElementById('dots');
+
+// Build dots
+for(let i=0;i<TOTAL;i++){
+  const d=document.createElement('button');
+  d.className='dot'+(i===0?' active':'');
+  d.onclick=(()=>{const n=i;return()=>goTo(n);})();
+  dotsEl.appendChild(d);
+}
+
+function goTo(n){
+  if(n<0||n>=TOTAL)return;
+  cur=n;
+  track.style.transform=`translateX(-${cur*100}%)`;
+  // tabs
+  tabs.forEach((t,i)=>t.classList.toggle('active',i===cur));
+  // dots
+  dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+  // arrows
+  prevBtn.disabled=cur===0;
+  nextBtn.disabled=cur===TOTAL-1;
+  // scroll active tab into view
+  tabs[cur].scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+}
+
+// Keyboard navigation
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight')goTo(cur+1);
+  if(e.key==='ArrowLeft') goTo(cur-1);
+});
+
+// Touch/swipe
+let tx=0;
+track.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+track.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>50) goTo(dx<0?cur+1:cur-1);
+},{passive:true});
+
+// ─── FLOATING LEAVES ───
+const leafLayer=document.getElementById('leaf-layer');
+const lc=['#E63946','#C0392B','#F4A261','#FFD166','#74C69D','#A8DADC','#FFB3B3'];
+for(let i=0;i<16;i++){
+  const l=document.createElement('div');
+  l.className='fl';
+  const sz=12+Math.random()*20;
+  const color=lc[Math.floor(Math.random()*lc.length)];
+  l.style.cssText=`left:${Math.random()*100}vw;animation-duration:${9+Math.random()*14}s;animation-delay:${Math.random()*-22}s;`;
+  l.innerHTML=`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="${color}" opacity="0.6" xmlns="http://www.w3.org/2000/svg"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-8 2z"/></svg>`;
+  leafLayer.appendChild(l);
+}
+
+// ─── HERO STARS ───
+const hs=document.getElementById('hero-stars');
+for(let i=0;i<36;i++){
+  const s=document.createElement('div');
+  const sz=1.5+Math.random()*3;
+  const sc=['rgba(139,37,0,0.18)','rgba(255,255,255,0.6)','rgba(92,34,0,0.15)','rgba(255,200,100,0.5)'];
+  s.style.cssText=`position:absolute;width:${sz}px;height:${sz}px;border-radius:50%;background:${sc[Math.floor(Math.random()*sc.length)]};top:${Math.random()*100}%;left:${Math.random()*100}%;animation:twinkle ${2+Math.random()*4}s ${Math.random()*4}s ease-in-out infinite;`;
+  hs.appendChild(s);
+}
+
+// star keyframe
+const styleEl=document.createElement('style');
+styleEl.textContent='@keyframes twinkle{0%,100%{opacity:.1;transform:scale(1);}50%{opacity:.65;transform:scale(1.4);}}';
+document.head.appendChild(styleEl);
+
+// ─── MINDFULNESS TIMER ───
+let tInterval,tRunning=false,tLeft=300;
+function toggleTimer(){
+  const btn=document.getElementById('timer-btn');
+  const lbl=document.getElementById('timer-label');
+  if(!tRunning){
+    tRunning=true;btn.textContent='⏸ Pause';lbl.textContent='Breathe slowly…';
+    tInterval=setInterval(()=>{
+      tLeft--;updateTimer();
+      if(tLeft<=0){
+        clearInterval(tInterval);tRunning=false;
+        btn.textContent='↺ Restart';lbl.textContent='✓ Done! Notice how you feel.';tLeft=300;
+      }
+    },1000);
+  }else{
+    clearInterval(tInterval);tRunning=false;btn.textContent='▶ Resume';lbl.textContent='Paused';
+  }
+}
+function updateTimer(){
+  const m=Math.floor(tLeft/60),s=tLeft%60;
+  document.getElementById('timer-display').textContent=`${m}:${s.toString().padStart(2,'0')}`;
+}
+
+// ─── SAVE REFLECTIONS ───
+const saved={};
+function sv(inputId,okId){
+  saved[inputId]=document.getElementById(inputId).value;
+  const el=document.getElementById(okId);
+  el.style.display='block';
+  setTimeout(()=>el.style.display='none',3200);
+}
+
+// ─── SURVEY ───
+function selR(btn,g){
+  btn.closest('.sitem').querySelectorAll('.rbtn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+}
+function selA(inp){
+  inp.closest('.arow').querySelectorAll('.aopt').forEach(o=>o.classList.remove('sel'));
+  inp.closest('.aopt').classList.add('sel');
+}
+function submitSurvey(){
+  document.getElementById('survey-form').style.display='none';
+  document.getElementById('survey-thanks').style.display='block';
+}
+</script>
+</body>
+</html>
