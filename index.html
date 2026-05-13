@@ -176,6 +176,20 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var
 .hero-char-row{
   display:flex;align-items:flex-end;justify-content:center;gap:20px;
   flex-wrap:wrap;margin-top:8px;
+  position:relative;z-index:2;
+}
+.hero-plant-zone{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:52%;
+  overflow:hidden;
+  z-index:1;
+}
+.hero-plant-zone img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
 }
 .hero-bubble{
   background:white;color:var(--text);
@@ -471,7 +485,6 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
       style="height:38px; width:auto;"
     />
   </div>
-  <div class="nav-logo">Pathways to Success</div>
   <div class="tab-bar" id="tab-bar">
     <button class="tab-btn active" onclick="goTo(0)">Welcome</button>
     <button class="tab-btn" onclick="goTo(1)">Overview</button>
@@ -562,6 +575,9 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
       </div>
     </div>
  
+  <div class="hero-plant-zone">
+    <img src="./plant.jpg" alt=""/>
+  </div>
   </div>
 </div>
  
