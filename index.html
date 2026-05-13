@@ -486,10 +486,10 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
     <button class="tab-btn" onclick="goTo(2)">Outcomes</button>
     <button class="tab-btn" onclick="goTo(3)">The Science</button>
     <button class="tab-btn" onclick="goTo(4)">Mindfulness</button>
-    <button class="tab-btn" onclick="goTo(5)">Key Concepts</button>
-    <button class="tab-btn" onclick="goTo(6)">Reflect</button>
-    <button class="tab-btn" onclick="goTo(7)">Assignment</button>
-    <button class="tab-btn" onclick="goTo(8)">Check-In</button>
+    <button class="tab-btn" onclick="goTo(5)">Key Definitions</button>
+    <button class="tab-btn" onclick="goTo(6)">Application</button>
+    <button class="tab-btn" onclick="goTo(7)">Reflection</button>
+    <button class="tab-btn" onclick="goTo(8)">Home Assignment</button>
   </div>
 </nav>
  
@@ -948,7 +948,7 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
 <div class="slide slide-coral">
   <div class="container">
     <div class="stag terra">Practice & Application</div>
-    <h2>Watch &amp; Reflect</h2>
+    <h2>Watch &amp; Apply</h2>
  
     <div class="vwrap" style="margin-bottom:22px;">
       <p style="color:rgba(255,255,255,.7);margin-bottom:14px;font-size:.88rem;">&#9654; Click below to open the video on YouTube</p>
@@ -993,24 +993,9 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
         </svg>
       </div>
       <div class="cbubble red-b">
-        <strong>Sit with it for a second.</strong><br/>
-        Don't rush into the journal the moment the video ends. Let it land. Then come back and write whatever's actually on your mind — messy is fine, perfect is not the goal.
+        <strong>Complete assignment on canvas.</strong><br/>
+        text here!
       </div>
-    </div>
- 
-    <div class="jbox">
-      <h3>Reflection</h3>
-      <ul class="jqs">
-        <li>What thoughts, feelings, and emotions came up while you watched?</li>
-        <li>Does any part of the video resonate with your own life?</li>
-        <li>What one gem could you extract from this video and apply in your own life?</li>
-        <li>What are some practical ways you can integrate this message into your daily life?</li>
-      </ul>
-      <textarea placeholder="Your reflection... let it flow" id="vid-ref"></textarea>
-      <div style="text-align:right;margin-top:10px;">
-        <button class="btn coral-btn" style="font-size:.88rem;padding:10px 20px;" onclick="sv('vid-ref','vid-ok')">Save reflection &#10003;</button>
-      </div>
-      <div class="save-ok" id="vid-ok" style="color:var(--coral);">&#10003; Reflection saved!</div>
     </div>
   </div>
 </div>
@@ -1120,56 +1105,15 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
         For real — that matters. Before you go, drop some honest feedback below. Not "what sounds good" feedback. What you actually thought. It helps us make this better for real.
       </div>
     </div>
- 
-    <div class="card">
-      <div id="survey-form">
-        <div class="sitem">
-          <p>1. How would you rate your understanding of how the heart communicates with the brain?</p>
-          <div class="rrow">
-            <button class="rbtn" onclick="selR(this,'q1')">1</button>
-            <button class="rbtn" onclick="selR(this,'q1')">2</button>
-            <button class="rbtn" onclick="selR(this,'q1')">3</button>
-            <button class="rbtn" onclick="selR(this,'q1')">4</button>
-            <button class="rbtn" onclick="selR(this,'q1')">5</button>
-          </div>
-          <div style="display:flex;justify-content:space-between;font-size:.78rem;color:#888;margin-top:5px;"><span>Not at all</span><span>Very well</span></div>
-        </div>
-        <div class="divider"></div>
-        <div class="sitem">
-          <p>2. The mindfulness activity helped me connect with my body and emotions.</p>
-          <div class="arow">
-            <label class="aopt"><input type="radio" name="q2" onclick="selA(this)"/> Strongly Agree</label>
-            <label class="aopt"><input type="radio" name="q2" onclick="selA(this)"/> Agree</label>
-            <label class="aopt"><input type="radio" name="q2" onclick="selA(this)"/> Neutral</label>
-            <label class="aopt"><input type="radio" name="q2" onclick="selA(this)"/> Disagree</label>
-          </div>
-        </div>
-        <div class="divider"></div>
-        <div class="sitem">
-          <p>3. How engaging did you find this learning experience overall?</p>
-          <div class="rrow">
-            <button class="rbtn" onclick="selR(this,'q3')">1</button>
-            <button class="rbtn" onclick="selR(this,'q3')">2</button>
-            <button class="rbtn" onclick="selR(this,'q3')">3</button>
-            <button class="rbtn" onclick="selR(this,'q3')">4</button>
-            <button class="rbtn" onclick="selR(this,'q3')">5</button>
-          </div>
-          <div style="display:flex;justify-content:space-between;font-size:.78rem;color:#888;margin-top:5px;"><span>Not engaging</span><span>Very engaging</span></div>
-        </div>
-        <div class="divider"></div>
-        <div class="sitem">
-          <p>4. One thing I'm taking away from this module is…</p>
-          <textarea style="min-height:100px;" placeholder="Share one insight, idea, or feeling..."></textarea>
-        </div>
-        <div style="text-align:center;margin-top:20px;">
-          <button class="btn red-btn" onclick="submitSurvey()">Submit Feedback</button>
-        </div>
-      </div>
-      <div id="survey-thanks">
-        <div class="ti">&#10024;</div>
-        <p>Thank you! Your feedback helps grow this program.</p>
-        <p style="font-weight:400;color:#555;font-size:.93rem;margin-top:8px;">See you in the next segment — you're doing amazing.</p>
-      </div>
+
+   <div class="jbox">
+      <h3>Reflection</h3>
+      <ul class="jqs">
+        <li>What thoughts, feelings, and emotions came up while you watched?</li>
+        <li>Does any part of the video resonate with your own life?</li>
+        <li>What one gem could you extract from this video and apply in your own life?</li>
+        <li>What are some practical ways you can integrate this message into your daily life?</li>
+      </ul>
     </div>
   </div>
 </div>
