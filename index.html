@@ -9,25 +9,20 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
  
 :root{
-  --forest:#1D6363;      /* Duke Teal */
-  --deep:#00539B;        /* Duke Royal Blue */
-  --sage:#407E99;        /* Duke Sky Blue */
-  --mint:#A0B83A;        /* Duke Light Green */
-  --lmint:#dde8c0;       /* Duke Light Green 20% */
-  --coral:#E0750B;       /* Duke Orange */
-  --terra:#E0750B;       /* Duke Orange */
-  --gold:#EEBD60;        /* Duke Yellow */
-  --sky:#83D8FE;         /* Duke Light Blue */
-  --navy:#00539B;        /* Duke Royal Blue */
-  --cream:#EBF1F7;       /* Duke Sky Blue 10% */
-  --warm:#F2F5F8;        /* light neutral */
+  /* ── Duke Health Official Colors ── */
+  --deep:#00539B;        /* Duke Royal Blue  (primary) */
+  --sage:#407E99;        /* Duke Sky Blue    (support) */
+  --duke-green:#5E802C;  /* Duke Green       (support) */
   --text:#58595b;        /* Duke Gray */
-  --heart-red:#B03D33;   /* Duke Red */
-  --heart-dark:#8a2f27;  /* Duke Red dark */
-  --duke-purple:#645285; /* Duke Purple */
-  --duke-green:#5E802C;  /* Duke Green */
-  --duke-teal:#1D6363;   /* Duke Teal */
-  --duke-orange:#E0750B; /* Duke Orange */
+  --forest:#1D6363;      /* Duke Teal        (accent) */
+  --gold:#EEBD60;        /* Duke Yellow      (accent) */
+  --mint:#A0B83A;        /* Duke Light Green (accent) */
+  --duke-purple:#645285; /* Duke Purple      (accent) */
+  --coral:#E0750B;       /* Duke Orange      (accent) */
+  --sky:#83D8FE;         /* Duke Light Blue  (accent) */
+  --heart-red:#B03D33;   /* Duke Red         (accent) */
+  /* Approved tint — guidelines sanction 10% Sky Blue for large areas */
+  --cream:#EBF1F7;       /* Duke Sky Blue 10% */
 }
  
 html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var(--text);background:#111;}
@@ -181,7 +176,7 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var
 .hero-plant-zone{
   position:absolute;
   bottom:0;left:0;right:0;
-  height:43%;
+  height:42%;
   overflow:hidden;
   z-index:1;
 }
@@ -239,7 +234,7 @@ p:last-child{margin-bottom:0;}
   background:white;border-radius:20px 20px 20px 4px;
   padding:16px 22px;box-shadow:0 6px 22px rgba(0,0,0,.1);
   font-size:.95rem;line-height:1.65;max-width:480px;
-  border:2px solid var(--lmint);
+  border:2px solid var(--mint);
 }
 .cbubble strong{color:var(--deep);}
 .cbubble.red-b{border-color:#FFD0D0;}
@@ -279,7 +274,7 @@ p:last-child{margin-bottom:0;}
 .outcome:hover{transform:translateX(4px);box-shadow:0 6px 18px rgba(0,0,0,.1);}
 .onum{
   flex-shrink:0;width:32px;height:32px;border-radius:50%;
-  background:var(--lmint);color:var(--deep);font-weight:900;font-size:.88rem;
+  background:var(--cream);color:var(--deep);font-weight:900;font-size:.88rem;
   display:flex;align-items:center;justify-content:center;
 }
 .outcome p{margin:0;font-size:.95rem;}
@@ -318,7 +313,7 @@ p:last-child{margin-bottom:0;}
 }
 .binner{
   position:absolute;inset:22px;border-radius:50%;
-  background:linear-gradient(135deg,var(--lmint),var(--sky));
+  background:linear-gradient(135deg,var(--cream),var(--sky));
   display:flex;align-items:center;justify-content:center;font-size:2.2rem;
 }
 #timer-display{font-size:2.4rem;font-weight:900;color:var(--deep);margin:14px 0 6px;}
@@ -333,7 +328,7 @@ p:last-child{margin-bottom:0;}
 .step-item::before{
   content:counter(steps);flex-shrink:0;
   width:32px;height:32px;border-radius:50%;
-  background:var(--gold);color:var(--navy);font-weight:900;font-size:.9rem;
+  background:var(--gold);color:var(--deep);font-weight:900;font-size:.9rem;
   display:flex;align-items:center;justify-content:center;
 }
 .step-item p{margin:0;font-size:.95rem;}
@@ -372,8 +367,8 @@ p:last-child{margin-bottom:0;}
 .fb p{font-size:.86rem;line-height:1.65;}
  
 /* ─── JOURNAL ─── */
-.jbox{background:white;border-radius:18px;padding:26px 30px;box-shadow:0 4px 18px rgba(0,0,0,.08);border-top:5px solid var(--terra);}
-.jbox h3{color:var(--terra);margin-bottom:14px;}
+.jbox{background:white;border-radius:18px;padding:26px 30px;box-shadow:0 4px 18px rgba(0,0,0,.08);border-top:5px solid var(--coral);}
+.jbox h3{color:var(--coral);margin-bottom:14px;}
 .jqs{list-style:none;margin-bottom:18px;}
 .jqs li{
   padding:9px 0;border-bottom:1px dashed #ddd;
@@ -391,7 +386,7 @@ textarea{
 textarea:focus{outline:none;border-color:var(--sage);background:white;}
  
 /* ─── VIDEO ─── */
-.vwrap{background:var(--navy);border-radius:18px;padding:20px;box-shadow:0 8px 26px rgba(0,0,0,.2);}
+.vwrap{background:var(--deep);border-radius:18px;padding:20px;box-shadow:0 8px 26px rgba(0,0,0,.2);}
 .vplate{
   background:linear-gradient(135deg,#0f2942,#1a3a5c);
   border-radius:12px;aspect-ratio:16/9;
@@ -427,7 +422,7 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
  
 /* ─── SURVEY ─── */
 .sitem{margin-bottom:22px;}
-.sitem p{font-weight:700;margin-bottom:10px;color:var(--navy);}
+.sitem p{font-weight:700;margin-bottom:10px;color:var(--deep);}
 .rrow{display:flex;gap:9px;flex-wrap:wrap;}
 .rbtn{
   width:44px;height:44px;border-radius:50%;
@@ -480,7 +475,7 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
   <!-- Duke Health & Well-Being Logo -->
   <div class="nav-duke-logo">
     <img
-      src="./site-logo.svg"
+      src="./white logo.png"
       alt="Duke Health & Well-Being"
       style="height:38px; width:auto;"
     />
@@ -1028,7 +1023,7 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
       <div style="text-align:right;margin-top:10px;">
         <button class="btn coral-btn" style="font-size:.88rem;padding:10px 20px;" onclick="sv('vid-ref','vid-ok')">Save reflection &#10003;</button>
       </div>
-      <div class="save-ok" id="vid-ok" style="color:var(--terra);">&#10003; Reflection saved!</div>
+      <div class="save-ok" id="vid-ok" style="color:var(--coral);">&#10003; Reflection saved!</div>
     </div>
   </div>
 </div>
