@@ -155,7 +155,7 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var
 /* Title area */
 .title-frame{
   position:relative;display:inline-block;
-  padding:0;margin-bottom:20px;
+  padding:0;margin-bottom:15px;
 }
 .title-frame h1{
   font-family:'Fraunces',serif;
@@ -167,7 +167,7 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var
 .title-ornament{display:none;}
 .corner-tl,.corner-tr,.corner-bl,.corner-br{display:none;}
  
-.hero-sub{color:#1D3557;font-size:1.08rem;max-width:500px;line-height:1.72;margin-bottom:36px;font-weight:500;}
+.hero-sub{color:#1D3557;font-size:1.08rem;max-width:1000px;line-height:1.72;margin-bottom:36px;font-weight:500;}
  
 .hero-char-row{
   display:flex;align-items:flex-end;justify-content:center;gap:20px;
@@ -431,10 +431,35 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
 }
 .acard h3{color:var(--gold);font-size:1.35rem;margin-bottom:14px;}
 .acard p{color:rgba(255,255,255,.88);}
-.acard .steps .step-item{background:rgba(255,255,255,.22);color:#00539B;}
+.acard .steps .step-item{background:rgba(255,255,255,.22);color:var(--deep)}
 .acard textarea{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.4);color:white;}
 .acard textarea::placeholder{color:rgba(255,255,255,.55);}
 .acard textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.3);}
+
+/* IMAGE SECTIONS */
+.top-image{
+  width:100%;
+  min-height:320px;
+  background-size:cover;
+  background-position:center;
+  border-radius:22px;
+  margin-bottom:28px;
+}
+
+.bottom-image{
+  width:100%;
+  min-height:360px;
+  background-size:cover;
+  background-position:center;
+  border-radius:22px;
+  margin-top:28px;
+}
+
+.full-bg{
+  background-size:cover !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+}
  
 /* ─── RESPONSIVE ─── */
 @media(max-width:600px){
@@ -569,6 +594,8 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
   <div class="container">
     <div class="stag">Module Overview</div>
     <h2>Take Heart</h2>
+    
+    <div class="top-image" style="background-image:url('./overview.jpg');"></div>
  
     <div class="char-row flip">
       <!-- HEART CHARACTER: CALM / HAND ON CHEST -->
@@ -660,7 +687,9 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
         <p><strong>Apply</strong> heart-focused self-regulation skills to everyday situations such as school, work, relationships, and decision-making</p>
       </li>
     </ul>
- 
+    
+    <div class="bottom-image" style="background-image:url('./outcome.jpg');"></div>
+    
     <div class="char-row" style="margin-top:32px;">
       <!-- HEART CHARACTER: POINTING/TEACHING -->
       <div class="char-fig">
@@ -705,7 +734,7 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
   <div class="container">
     <div class="stag gold">Learning Segment 1</div>
     <h2 style="color:white;">The Heart Is More Than a Pump</h2>
- 
+    <div class="top-image" style="background-image:url('./science.jpg');"></div>
     <div class="char-row flip">
       <!-- HEART CHARACTER: CURIOUS/THINKING -->
       <div class="char-fig">
@@ -793,7 +822,7 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
 </div>
  
 <!-- ══════ SLIDE 5: MINDFULNESS ══════ -->
-<div class="slide slide-mint">
+<div class="slide slide-mint full-bg" style="background-image:url('./mindfulness.jpg');">  
   <div class="container">
     <div class="stag">Mindfulness Moment</div>
     <h2>Listening to the Heart</h2>
@@ -902,7 +931,7 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
         Let’s take a moment to revisit the terms we’ve encountered throughout this learning journey.
       </div>
     </div>
- 
+    <div class="top-image" style="background-image:url('./key.jpg');"></div>
     <div class="flipgrid">
       <div class="flip" onclick="this.classList.toggle('flipped')">
         <div class="flip-in">
@@ -933,7 +962,7 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
 </div>
  
 <!-- ══════ SLIDE 7: VIDEO + REFLECTION ══════ -->
-<div class="slide slide-coral">
+<div class="slide slide-coral full-bg" style="background-image:url('./apply.jpg');">
   <div class="container">
     <div class="stag terra">Practice & Application</div>
     <h2>Watch &amp; Reflect</h2>
@@ -1038,7 +1067,7 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
         </svg>
       </div>
       <div class="jbox">
-       
+      <div class="bottom-image" style="background-image:url('./reflect.jpg');"></div>
       <h3>Reflection</h3>
       <ul class="jqs">
         <li>What thoughts, feelings, and emotions came up while you watched?</li>
@@ -1067,6 +1096,8 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
         <li class="step-item"><p>Come back and share what happened in the Canvas Discussion</p></li>
       </ul>
     </div>
+   
+    <div class="bottom-image" style="background-image:url('./home.jpg');"></div>
    
     <div class="char-row flip">
       <!-- HEART CHARACTER: CHEERFUL THUMBSUP -->
