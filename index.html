@@ -437,22 +437,29 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
 .acard textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.3);}
 
 /* IMAGE SECTIONS */
-.top-image{
-  width:100%;
-  min-height:320px;
-  background-size:cover;
-  background-position:center;
-  border-radius:22px;
-  margin-bottom:28px;
+.section-image{
+  position:relative;
+  width:100vw;
+  left:50%;
+  right:50%;
+  margin-left:-50vw;
+  margin-right:-50vw;
+  height:360px;
+  overflow:hidden;
 }
 
-.bottom-image{
+.section-image img{
   width:100%;
-  min-height:360px;
-  background-size:cover;
-  background-position:center;
-  border-radius:22px;
-  margin-top:28px;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+
+.section-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.18);
 }
 
 .full-bg{
@@ -595,8 +602,11 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
     <div class="stag">Module Overview</div>
     <h2>Take Heart</h2>
     
-    <div class="top-image" style="background-image:url('./overview.jpg');"></div>
- 
+<div class="section-image">
+  <img src="./overview.jpg" alt="">
+  <div class="section-overlay"></div>
+</div>
+   
     <div class="char-row flip">
       <!-- HEART CHARACTER: CALM / HAND ON CHEST -->
       <div class="char-fig">
