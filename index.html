@@ -420,34 +420,6 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
 .acard textarea::placeholder{color:rgba(255,255,255,.55);}
 .acard textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.3);}
  
-/* ─── SURVEY ─── */
-.sitem{margin-bottom:22px;}
-.sitem p{font-weight:700;margin-bottom:10px;color:var(--deep);}
-.rrow{display:flex;gap:9px;flex-wrap:wrap;}
-.rbtn{
-  width:44px;height:44px;border-radius:50%;
-  border:2.5px solid var(--sage);background:white;
-  color:var(--deep);font-weight:800;font-size:.97rem;
-  cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;
-}
-.rbtn:hover,.rbtn.sel{background:#00539B;color:white;border-color:#00539B;transform:scale(1.1);}
-.arow{display:flex;flex-direction:column;gap:9px;}
-.aopt{
-  display:flex;align-items:center;gap:12px;
-  padding:12px 16px;border-radius:12px;background:white;
-  border:2px solid transparent;cursor:pointer;
-  font-size:.93rem;font-weight:600;transition:all .2s;
-}
-.aopt:hover{border-color:#83D8FE;background:#d4ecf7;}
-.aopt.sel{border-color:#00539B;background:#d4ecf7;}
-.aopt input{accent-color:var(--sage);width:16px;height:16px;}
-#survey-thanks{display:none;text-align:center;padding:28px;}
-#survey-thanks .ti{font-size:2.8rem;}
-#survey-thanks p{font-size:1.08rem;font-weight:700;color:var(--deep);margin-top:10px;}
- 
-/* ─── SAVE FEEDBACK ─── */
-.save-ok{display:none;font-weight:700;margin-top:8px;font-size:.9rem;}
- 
 /* ─── RESPONSIVE ─── */
 @media(max-width:600px){
   .char-row,.char-row.flip{flex-direction:column;align-items:center;}
@@ -1000,7 +972,7 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
   </div>
 </div>
  
-<!-- ══════ SLIDE 8: HOME ASSIGNMENT ══════ -->
+<!-- ══════ SLIDE 8: Reflection ══════ -->
 <div class="slide slide-dark">
   <div class="container">
     <div class="stag gold">Reflection & Transformation</div>
@@ -1060,57 +1032,9 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
     </div>
   </div> 
 </div>
-
-<!-- ══════ SLIDE 9: HOME ASSIGNMENT ══════ -->
-<div class="slide slide-dark">
-  <div class="container">
-    <div class="stag gold">Home Assignment</div>
-    <h2 style="color:white;">Passing It On</h2>
- 
-    <div class="char-row flip">
-      <div class="char-fig">
-        <svg viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
-          <defs><radialGradient id="hg9" cx="38%" cy="32%" r="65%"><stop offset="0%" stop-color="#FF7B7B"/><stop offset="100%" stop-color="#C0392B"/></radialGradient></defs>
-          <ellipse cx="110" cy="246" rx="55" ry="9" fill="rgba(0,0,0,0.14)"/>
-          <path d="M 110 200 C 110 200 10 132 10 70 C 10 32 38 12 68 26 C 84 34 98 50 110 68 C 122 50 136 34 152 26 C 182 12 210 32 210 70 C 210 132 110 200 110 200 Z" fill="url(#hg9)"/>
-          <path d="M 34 48 C 36 36 48 28 60 33" stroke="rgba(255,255,255,0.45)" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <ellipse cx="82" cy="88" rx="13" ry="14" fill="white"/><ellipse cx="138" cy="88" rx="13" ry="14" fill="white"/>
-          <circle cx="84" cy="90" r="9" fill="#1a1a1a"/><circle cx="140" cy="90" r="9" fill="#1a1a1a"/>
-          <circle cx="87" cy="86" r="3" fill="white"/><circle cx="143" cy="86" r="3" fill="white"/>
-          <path d="M 72 72 Q 82 64 92 72" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-          <path d="M 128 72 Q 138 64 148 72" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-          <path d="M 82 118 Q 110 136 138 118" stroke="#1a1a1a" stroke-width="3.5" fill="rgba(255,180,150,0.45)" stroke-linecap="round"/>
-          <ellipse cx="60" cy="110" rx="14" ry="9" fill="rgba(176,61,51,0.38)"/><ellipse cx="160" cy="110" rx="14" ry="9" fill="rgba(176,61,51,0.38)"/>
-          <path d="M 204 96 Q 220 72 214 50" stroke="#B03D33" stroke-width="15" fill="none" stroke-linecap="round"/>
-          <text x="200" y="50" font-size="20">&#128077;</text>
-          <path d="M 16 100 Q 2 118 6 140" stroke="#B03D33" stroke-width="15" fill="none" stroke-linecap="round"/>
-          <ellipse cx="6" cy="142" rx="11" ry="7" fill="#B03D33"/>
-          <path d="M 94 196 Q 84 218 78 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
-          <ellipse cx="76" cy="234" rx="13" ry="8" fill="#B03D33"/>
-          <path d="M 126 196 Q 136 218 142 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
-          <ellipse cx="144" cy="234" rx="13" ry="8" fill="#B03D33"/>
-          <text x="16" y="50" font-size="14">&#11088;</text>
-        </svg>
-      </div>
-      <div class="cbubble dark-b" style="border-radius:20px 20px 4px 20px;">
-        <strong>Someone in your life needs this.</strong><br/>
-        Is there a young person in your life who could benefit from being reminded of their worthiness? Take a moment to connect with them and remind them that they are priceless.
-      </div>
-    </div>
- 
-    <div class="acard">
-      <h3>Your Assignment</h3>
-      <ul class="steps" style="margin-top:22px;counter-reset:steps;">
-        <li class="step-item"><p>Think of someone: a younger sibling, a cousin, a neighbor, a friend going through it</p></li>
-        <li class="step-item"><p>Reach out: in person, or by FaceTime. Tell them they matter and why</p></li>
-        <li class="step-item"><p>Notice their reaction: their face, their body language, what they say</p></li>
-        <li class="step-item"><p>Come back and share what happened in the Canvas Discussion</p></li>
-      </ul>
-    </div>
-  </div>
 </div>
- 
-<!-- ══════ SLIDE 9: SURVEY ══════ -->   
+
+<!-- ══════ SLIDE 9: Home Assignment ══════ -->   
  <div class="slide slide-warm">
   <div class="container">
     <div class="stag">Home Assignment</div>
@@ -1162,7 +1086,6 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
         <strong>Come back here and tell us about it in the next Canvas Assignment.</strong><br/>
       </div>
     </div>
-   
   </div>
 </div>
  
@@ -1285,19 +1208,6 @@ function sv(inputId,okId){
   setTimeout(()=>el.style.display='none',3200);
 }
  
-// ─── SURVEY ───
-function selR(btn,g){
-  btn.closest('.sitem').querySelectorAll('.rbtn').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-}
-function selA(inp){
-  inp.closest('.arow').querySelectorAll('.aopt').forEach(o=>o.classList.remove('sel'));
-  inp.closest('.aopt').classList.add('sel');
-}
-function submitSurvey(){
-  document.getElementById('survey-form').style.display='none';
-  document.getElementById('survey-thanks').style.display='block';
-}
 </script>
 </body>
 </html>
