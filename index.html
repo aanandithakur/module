@@ -159,8 +159,9 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var
 }
 .title-frame h1{
   font-family:'Fraunces',serif;
-  font-size:clamp(2.2rem,5.5vw,4rem);color:#00539B;
-  line-height:1.1;
+  font-size:clamp(3rem,7vw,5.5rem);
+  color:#00539B;
+  line-height:1.05;
 }
 .title-frame h1 span{color:#B03D33;display:block;}
 .title-ornament{display:none;}
@@ -279,8 +280,11 @@ p:last-child{margin-bottom:0;}
   background:var(--cream);color:var(--deep);font-weight:900;font-size:.88rem;
   display:flex;align-items:center;justify-content:center;
 }
-.outcome p{margin:0;font-size:.95rem;}
- 
+.outcome p{
+  margin:0;
+  font-size:1.2rem;
+  line-height:1.7;
+} 
 /* ─── COMM GRID ─── */
 .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:22px;}
 .ccard{
@@ -353,7 +357,11 @@ p:last-child{margin-bottom:0;}
  
 /* ─── FLIP CARDS ─── */
 .flipgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:18px;}
-.flip{height:188px;perspective:1000px;cursor:pointer;}
+.flip{
+  height:260px;
+  perspective:1000px;
+  cursor:pointer;
+}
 .flip-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1);}
 .flip:hover .flip-in,.flip.flipped .flip-in{transform:rotateY(180deg);}
 .ff,.fb{
@@ -363,11 +371,17 @@ p:last-child{margin-bottom:0;}
 }
 .ff{background:linear-gradient(135deg,#003d75,#00539B);color:white;box-shadow:0 6px 18px rgba(0,83,155,.28);}
 .ff .fi{font-size:2rem;margin-bottom:10px;}
-.ff h4{font-weight:800;font-size:.97rem;}
+.ff h4{
+  font-weight:800;
+  font-size:1.35rem;
+  line-height:1.4;
+}
 .ff small{font-size:.73rem;color:rgba(255,255,255,.6);margin-top:8px;}
 .fb{background:white;transform:rotateY(180deg);border:2px solid #c8dcf5;box-shadow:0 6px 18px rgba(0,0,0,.1);}
-.fb p{font-size:.86rem;line-height:1.65;}
- 
+.fb p{
+  font-size:1.08rem;
+  line-height:1.8;
+} 
 /* ─── JOURNAL ─── */
 .jbox{background:white;border-radius:18px;padding:26px 30px;box-shadow:0 4px 18px rgba(0,0,0,.08);border-top:5px solid var(--coral);}
 .jbox h3{color:var(--coral);margin-bottom:14px;}
