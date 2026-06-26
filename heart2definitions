@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Science of the Heart | Pathways to Success</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+ 
+:root{
+  /* ── Duke Health Official Colors ── */
+  --deep:#00539B;        /* Duke Royal Blue  (primary) */
+  --sage:#407E99;        /* Duke Sky Blue    (support) */
+  --duke-green:#5E802C;  /* Duke Green       (support) */
+  --text:#58595b;        /* Duke Gray */
+  --forest:#1D6363;      /* Duke Teal        (accent) */
+  --gold:#EEBD60;        /* Duke Yellow      (accent) */
+  --mint:#A0B83A;        /* Duke Light Green (accent) */
+  --duke-purple:#645285; /* Duke Purple      (accent) */
+  --coral:#E0750B;       /* Duke Orange      (accent) */
+  --sky:#83D8FE;         /* Duke Light Blue  (accent) */
+  --heart-red:#B03D33;   /* Duke Red         (accent) */
+  /* Approved tint — guidelines sanction 10% Sky Blue for large areas */
+  --cream:#EBF1F7;       /* Duke Sky Blue 10% */
+}
+ 
+html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var(--text);background:#111;}
+ 
+/* ─── APP SHELL ─── */
+.app{display:flex;flex-direction:column;height:100vh;overflow:hidden;}
+ 
+/* ─── TOP NAV ─── */
+.top-nav{
+  flex-shrink:0;height:60px;
+  background:#00539B;
+  display:flex;align-items:center;gap:0;overflow-x:auto;
+  box-shadow:0 2px 16px rgba(0,83,155,.45);
+  scrollbar-width:none;
+  z-index:100;position:relative;
+}
+.top-nav::-webkit-scrollbar{display:none;}
+/* Duke H&WB Logo */
+.nav-duke-logo{
+  flex-shrink:0;display:flex;align-items:center;gap:10px;
+  padding:0 16px 0 18px;height:100%;
+  border-right:1px solid rgba(255,255,255,.2);
+  text-decoration:none;
+}
+.nav-duke-wordmark{display:flex;flex-direction:column;justify-content:center;line-height:1;}
+.nav-duke-wordmark .dw-duke{
+  font-family:'Fraunces',serif;font-size:1.15rem;font-weight:900;
+  color:white;letter-spacing:-.01em;
+}
+.nav-duke-wordmark .dw-sub{
+  font-size:.6rem;font-weight:600;letter-spacing:.1em;
+  color:rgba(255,255,255,.75);text-transform:uppercase;margin-top:2px;
+  white-space:nowrap;
+}
+.nav-logo{
+  flex-shrink:0;padding:0 16px;
+  font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;
+  color:rgba(255,255,255,.6);white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);
+  height:100%;display:flex;align-items:center;letter-spacing:.04em;text-transform:uppercase;
+}
+.tab-bar{display:flex;height:100%;}
+.tab-btn{
+  flex-shrink:0;padding:0 18px;height:100%;
+  background:transparent;border:none;
+  color:rgba(255,255,255,.6);font-family:'DM Sans',sans-serif;
+  font-size:.82rem;font-weight:700;cursor:pointer;
+  white-space:nowrap;border-bottom:3px solid transparent;
+  transition:color .2s,border-color .2s,background .2s;
+  letter-spacing:.02em;
+}
+.tab-btn:hover{color:rgba(255,255,255,.95);background:rgba(255,255,255,.1);}
+.tab-btn.active{color:#EEBD60;border-bottom-color:#EEBD60;background:rgba(255,255,255,.1);}
+ 
+/* ─── SLIDES WRAPPER ─── */
+.slides-wrapper{flex:1;overflow:hidden;position:relative;}
+.slides-track{
+  display:flex;height:100%;
+  transition:transform .55s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+.slide{
+  flex-shrink:0;width:100%;height:100%;
+  overflow-y:auto;overflow-x:hidden;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent;
+}
+.slide::-webkit-scrollbar{width:4px;}
+.slide::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:2px;}
+ 
+/* ─── BOTTOM NAV ─── */
+.bottom-nav{
+  flex-shrink:0;height:52px;background:#00539B;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  box-shadow:0 -2px 12px rgba(0,83,155,.4);
+}
+.arrow-btn{
+  width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.35);
+  background:transparent;color:white;font-size:1rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s,transform .15s;
+}
+.arrow-btn:hover{background:rgba(255,255,255,.15);border-color:white;transform:scale(1.1);}
+.arrow-btn:disabled{opacity:.3;cursor:default;transform:none;}
+.dots{display:flex;gap:8px;align-items:center;}
+.dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,.3);cursor:pointer;
+  transition:background .2s,transform .2s,width .3s;border:none;
+}
+.dot.active{background:var(--gold);width:22px;border-radius:4px;}
+ 
+/* ─── FLOATING LEAVES ─── */
+.leaf-layer{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.fl{position:absolute;top:-60px;opacity:0;animation:leaffall linear infinite;}
+@keyframes leaffall{
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  8%{opacity:.16;}
+  92%{opacity:.1;}
+  100%{transform:translateY(108vh) rotate(540deg);opacity:0;}
+}
+ 
+/* ─────────────────────────────────────────
+   SLIDE CONTENT STYLES
+───────────────────────────────────────── */
+.container{max-width:1200px;margin:0 auto;padding:40px 28px;}
+ 
+/* ─── SLIDE 1: HERO ─── */
+.slide-hero{
+  background:#EBF1F7;
+  border:14px solid #00539B;
+  position:relative;overflow:hidden;
+}
+.slide-hero::after{
+  content:'';position:absolute;inset:8px;
+  border:2px solid rgba(0,83,155,.3);
+  pointer-events:none;z-index:5;
+}
+.hero-stars{position:absolute;inset:0;pointer-events:none;}
+.hero-inner{
+  position:relative;z-index:2;
+  min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:48px 28px 40px;text-align:center;
+}
+.module-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#00539B;border:1.5px solid rgba(0,83,155,.4);
+  color:white;
+  font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  padding:7px 20px;border-radius:50px;margin-bottom:32px;
+}
+/* Title area */
+.title-frame{
+  position:relative;display:inline-block;
+  padding:0;margin-bottom:15px;
+}
+.title-frame h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(3rem,7vw,5.5rem);
+  color:#00539B;
+  line-height:1.05;
+}
+.title-frame h1 span{color:#B03D33;display:block;}
+.title-ornament{display:none;}
+.corner-tl,.corner-tr,.corner-bl,.corner-br{display:none;}
+ 
+.hero-sub{color:#1D3557;font-size:1.08rem;max-width:1000px;line-height:1.72;margin-bottom:36px;font-weight:500;}
+ 
+.hero-char-row{
+  display:flex;align-items:flex-end;justify-content:center;gap:20px;
+  flex-wrap:wrap;margin-top:8px;
+  position:relative;z-index:2;
+}
+.hero-plant-zone{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:45%;
+  overflow:hidden;
+  z-index:1;
+}
+.hero-plant-zone img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 40%;
+  display:block;
+}
+ .hero-bubble{
+  background:white;
+  color:var(--text);
+  border-radius:20px 20px 20px 4px;
+  padding:16px 22px;
+  font-size:1.15rem;
+  line-height:1.8;
+  max-width:340px;
+}
+.hero-bubble strong{color:var(--heart-red);}
+ 
+/* ─── GENERAL SLIDE LAYOUTS — Duke brand palette ─── */
+.slide-cream{background:#EBF1F7;}                                            /* Duke Sky Blue 10% */
+.slide-sky{background:linear-gradient(160deg,#d4ecf7,#c0dff0);}             /* Duke Light Blue tint */
+.slide-forest{background:linear-gradient(145deg,#003d75,#00539B,#407E99);}  /* Duke Royal Blue → Sky Blue */
+.slide-mint{background:linear-gradient(150deg,#e8f0d8,#dde8c0);}            /* Duke Light Green tint */
+.slide-gold{background:linear-gradient(145deg,#fdf3d8,#f8e7b0);}            /* Duke Yellow tint */
+.slide-coral{background:linear-gradient(145deg,#fde8d0,#fcd0a8);}           /* Duke Orange tint */
+.slide-warm{background:#F2F5F8;}                                             /* light neutral */
+.slide-dark{background:linear-gradient(150deg,#1D6363,#00539B,#407E99);}    /* Duke Teal → Royal Blue */
+ 
+/* ─── SECTION TAGS ─── */
+.stag{
+  display:inline-block;background:#00539B;color:white;
+  font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 14px;border-radius:50px;margin-bottom:14px;
+}
+.stag.red{background:#B03D33;}
+.stag.gold{background:#1D6363;color:white;}
+.stag.navy{background:#00539B;}
+.stag.terra{background:#E0750B;}
+.stag.sky{background:#407E99;}
+ 
+h2{font-family:'Fraunces',serif;font-size:clamp(2.1rem,4vw,3.2rem);line-height:1.2;margin-bottom:16px;}
+h3{font-size:1.45rem;font-weight:800;margin-bottom:12px;}
+p{font-size:1.08rem;line-height:1.8;margin-bottom:14px;}
+p:last-child{margin-bottom:0;}
+ 
+/* ─── CHARACTER + BUBBLE ─── */
+.char-row{display:flex;align-items:flex-end;gap:18px;margin:28px 0;}
+.char-row.flip{flex-direction:row-reverse;}
+.char-row.flip .cbubble{border-radius:20px 20px 4px 20px;}
+.char-fig{flex-shrink:0;width:140px;}
+.char-fig svg{width:100%;height:auto;filter:drop-shadow(0 6px 16px rgba(0,0,0,.2));}
+@keyframes heartbounce{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-8px) rotate(2deg);}}
+.char-fig{animation:heartbounce 2.8s ease-in-out infinite;}
+.cbubble{
+  background:white;border-radius:20px 20px 20px 4px;
+  padding:16px 22px;box-shadow:0 6px 22px rgba(0,0,0,.1);
+  font-size:1.08rem;line-height:1.65;max-width:480px;
+  border:2px solid var(--mint);
+}
+.cbubble strong{color:var(--deep);}
+.cbubble.red-b{border-color:#FFD0D0;}
+.cbubble.gold-b{border-color:#FFE9A0;}
+.cbubble.dark-b{background:rgba(255,255,255,.22);color:white;border-color:rgba(255,255,255,.4);}
+.cbubble.dark-b strong{color:#FFE8A0;}
+
+ 
+/* ─── CARDS ─── */
+.card{
+  background:white;border-radius:18px;padding:26px 30px;margin-bottom:18px;
+  box-shadow:0 4px 18px rgba(0,0,0,.07);border:1.5px solid rgba(0,0,0,.05);
+}
+.card.dark{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.3);color:white;}
+.card.dark h3{color:var(--gold);}
+.card.dark strong{color:#FFE8A0;}
+ 
+.hbox{
+  background:linear-gradient(120deg,#dde8c0,#c8dcf5);
+  border-left:5px solid #407E99;border-radius:0 14px 14px 0;
+  padding:18px 22px;margin:18px 0;font-style:italic;font-size:1.02rem;
+}
+.hbox.gold{background:linear-gradient(120deg,#fdf3d8,#f8e7b0);border-color:#EEBD60;}
+.hbox.coral{background:linear-gradient(120deg,#fde8d0,#fcd0a8);border-color:#E0750B;}
+.hbox.dark{background:rgba(255,255,255,.2);border-color:#EEBD60;color:white;}
+ 
+.divider{height:1px;background:rgba(0,0,0,.08);margin:22px 0;}
+ 
+/* ─── OUTCOMES ─── */
+.outcomes{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:10px;}
+.outcome{
+  display:flex;align-items:flex-start;gap:14px;
+  background:white;border-radius:14px;padding:16px 20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
+  border-left:5px solid var(--sage);
+  transition:transform .2s,box-shadow .2s;
+}
+.outcome:hover{transform:translateX(4px);box-shadow:0 6px 18px rgba(0,0,0,.1);}
+.onum{
+  flex-shrink:0;width:32px;height:32px;border-radius:50%;
+  background:var(--cream);color:var(--deep);font-weight:900;font-size:.88rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.outcome p{
+  margin:0;
+  font-size:1.2rem;
+  line-height:1.7;
+} 
+/* ─── COMM GRID ─── */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:22px;}
+.ccard{
+  background:white;border-radius:16px;padding:22px 18px;text-align:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.08);
+  transition:transform .25s,box-shadow .25s;cursor:default;
+}
+.ccard:hover{transform:translateY(-6px);box-shadow:0 10px 26px rgba(0,0,0,.13);}
+.cicon{
+  width:54px;height:54px;border-radius:50%;margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+}
+.ccard h4{font-weight:800;font-size:.97rem;margin-bottom:7px;}
+.ccard p{font-size:.85rem;color:#555;margin:0;}
+ 
+/* ─── MINDFULNESS ─── */
+.mbox{
+  background:white;border-radius:22px;padding:34px;
+  box-shadow:0 8px 28px rgba(0,0,0,.1);text-align:center;
+}
+.breath-wrap{position:relative;width:148px;height:148px;margin:24px auto;}
+.bring{
+  position:absolute;inset:0;border-radius:50%;
+  border:3.5px solid var(--mint);
+  animation:breathe 4.2s ease-in-out infinite;
+}
+.bring:nth-child(2){animation-delay:1.4s;opacity:.55;}
+.bring:nth-child(3){animation-delay:2.8s;opacity:.28;}
+@keyframes breathe{
+  0%,100%{transform:scale(1);border-color:var(--mint);}
+  50%{transform:scale(1.2);border-color:var(--coral);}
+}
+.binner{
+  position:absolute;inset:22px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cream),var(--sky));
+  display:flex;align-items:center;justify-content:center;font-size:2.2rem;
+}
+#timer-display{font-size:2.4rem;font-weight:900;color:var(--deep);margin:14px 0 6px;}
+#timer-label{color:#666;font-size:.92rem;margin-bottom:22px;}
+ 
+.steps{list-style:none;counter-reset:steps;}
+.step-item{
+  counter-increment:steps;display:flex;gap:14px;align-items:flex-start;
+  margin-bottom:14px;padding:16px 18px;background:white;border-radius:14px;
+  box-shadow:0 3px 10px rgba(0,0,0,.06);
+}
+.step-item::before{
+  content:counter(steps);flex-shrink:0;
+  width:32px;height:32px;border-radius:50%;
+  background:var(--gold);color:var(--deep);font-weight:900;font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.step-item p{margin:0;font-size:.95rem;color:#00539B}
+ 
+/* ─── BUTTONS ─── */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#00539B;color:white;border:none;border-radius:50px;
+  padding:12px 26px;font-family:'DM Sans',sans-serif;font-size:.97rem;font-weight:700;
+  cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 14px rgba(0,83,155,.3);
+}
+.btn:hover{background:#003d75;transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,83,155,.4);}
+.btn:active{transform:none;}
+.btn.red-btn{background:#B03D33;box-shadow:0 4px 14px rgba(176,61,51,.3);}
+.btn.red-btn:hover{background:#8a2f27;}
+.btn.gold-btn{background:#1D6363;box-shadow:0 4px 14px rgba(29,99,99,.3);}
+.btn.coral-btn{background:#E0750B;box-shadow:0 4px 14px rgba(224,117,11,.3);}
+.btn.coral-btn:hover{background:#b85c08;}
+ 
+/* ─── FLIP CARDS ─── */
+.flipgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px;margin-top:18px;}
+.flip{
+  height:300px;
+  perspective:1000px;
+  cursor:pointer;
+}
+.flip-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1);}
+.flip:hover .flip-in,.flip.flipped .flip-in{transform:rotateY(180deg);}
+.ff,.fb{
+  position:absolute;inset:0;border-radius:16px;
+  backface-visibility:hidden;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:18px;text-align:center;
+}
+.ff{background:linear-gradient(135deg,#003d75,#00539B);color:white;box-shadow:0 6px 18px rgba(0,83,155,.28);}
+.ff .fi{font-size:2rem;margin-bottom:10px;}
+.ff h4{
+  font-weight:800;
+  font-size:1.35rem;
+  line-height:1.4;
+}
+.ff small{font-size:.73rem;color:rgba(255,255,255,.6);margin-top:8px;}
+.fb{background:white;transform:rotateY(180deg);border:2px solid #c8dcf5;box-shadow:0 6px 18px rgba(0,0,0,.1);}
+.fb p{
+  font-size:1.08rem;
+  line-height:1.8;
+} 
+/* ─── JOURNAL ─── */
+.jbox{background:white;border-radius:18px;padding:26px 30px;box-shadow:0 4px 18px rgba(0,0,0,.08);border-top:5px solid var(--coral);}
+.jbox h3{color:var(--coral);margin-bottom:14px;}
+.jqs{list-style:none;margin-bottom:18px;}
+.jqs li{
+  padding:9px 0;border-bottom:1px dashed #ddd;
+  font-size:.95rem;display:flex;gap:10px;align-items:flex-start;
+}
+.jqs li:last-child{border-bottom:none;}
+.jqs li::before{content:'✦';color:var(--coral);flex-shrink:0;margin-top:2px;}
+textarea{
+  width:100%;min-height:130px;border-radius:12px;
+  border:2px solid #e0e0e0;padding:14px 16px;
+  font-family:'DM Sans',sans-serif;font-size:.95rem;line-height:1.65;
+  resize:vertical;background:#FAFAFA;color:var(--text);
+  transition:border-color .2s;
+}
+textarea:focus{outline:none;border-color:var(--sage);background:white;}
+ 
+/* ─── VIDEO ─── */
+.vwrap{background:var(--deep);border-radius:18px;padding:20px;box-shadow:0 8px 26px rgba(0,0,0,.2);}
+.vplate{
+  background:linear-gradient(135deg,#0f2942,#1a3a5c);
+  border-radius:12px;aspect-ratio:16/9;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:white;gap:14px;cursor:pointer;border:2px dashed rgba(255,255,255,.22);
+  text-decoration:none;transition:background .2s;
+}
+.vplate:hover{background:linear-gradient(135deg,#1a3a5c,#2a5a8c);}
+.play-circle{
+  width:68px;height:68px;border-radius:50%;
+  background:rgba(255,255,255,.18);border:2.5px solid white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;transition:background .2s,transform .15s;
+}
+.vplate:hover .play-circle{background:rgba(255,255,255,.32);transform:scale(1.08);}
+.vplate p{font-size:.85rem;opacity:.65;}
+ 
+/* ─── ASSIGNMENT ─── */
+.acard{
+  background:white;
+  border-radius:18px;
+  padding:26px 30px;
+  color:var(--text);
+  box-shadow:0 4px 18px rgba(0,0,0,.07);
+  border:1.5px solid rgba(0,0,0,.05);
+  position:relative;
+  overflow:hidden;
+}
+.acard h3{color:var(--gold);font-size:1.35rem;margin-bottom:14px;}
+.acard p{color:rgba(255,255,255,.88);}
+.acard .steps .step-item{
+  background:white;
+  border-left:5px solid var(--sage);
+}
+
+.acard .step-item p{
+  color:#00539B !important;
+}
+.acard textarea{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.4);color:white;}
+.acard textarea::placeholder{color:rgba(255,255,255,.55);}
+.acard textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.3);}
+
+/* ─── CINEMATIC IMAGE SECTIONS ─── */
+
+.image-band{
+  --bg:none;
+  position:relative;
+
+  /* makes it truly edge-to-edge */
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+
+  /* space for the content sitting on top */
+  padding:10px 80px 90px;
+
+  overflow:hidden;
+  z-index:1;
+}
+
+.image-band::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:var(--bg);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  z-index:-1;
+}
+ 
+/* ─── RESPONSIVE ─── */
+@media(max-width:600px){
+  .char-row,.char-row.flip{flex-direction:column;align-items:center;}
+  .cbubble{border-radius:20px !important;}
+  .char-fig{width:120px;}
+  .title-frame{padding:22px 28px;}
+  .title-frame h1{font-size:1.8rem;}
+  .cgrid{grid-template-columns:1fr 1fr;}
+  .flipgrid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:380px){
+  .cgrid,.flipgrid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+ 
+<!-- FLOATING LEAVES -->
+<div class="leaf-layer" id="leaf-layer"></div>
+ 
+<div class="app">
+ 
+<!-- ─── TOP NAV ─── -->
+<nav class="top-nav">
+  <!-- Duke Health & Well-Being Logo -->
+  <div class="nav-duke-logo">
+    <img
+      src="./white logo.png"
+      alt="Duke Health & Well-Being"
+      style="height:38px; width:auto;"
+    />
+  </div>
+  <div class="tab-bar" id="tab-bar">
+    <button class="tab-btn active" onclick="goTo(0)">Key Definitions</button>
+  </div>
+</nav>
+ 
+<!-- ─── SLIDES ─── -->
+<div class="slides-wrapper">
+<div class="slides-track" id="track">
+ 
+<!-- ══════ SLIDE 6: KEY DEF ══════ -->
+<div class="slide slide-gold">
+  <div class="container">
+    <div class="stag gold">Core Concepts</div>
+    <h2 style="color:var(--deep);">Key Definitions</h2>
+    <p style="color:#555;">Hover or tap each card to flip it and see the definition!</p>
+
+  <div class="image-band" style="--bg:url('./key.jpg');">
+    <div class="char-row flip" style="margin-top:16px;">
+      <!-- HEART CHARACTER: HAPPY/TEACHING -->
+      <div class="char-fig">
+        <svg viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="hg6" cx="38%" cy="32%" r="65%"><stop offset="0%" stop-color="#FF7B7B"/><stop offset="100%" stop-color="#C0392B"/></radialGradient></defs>
+          <ellipse cx="110" cy="246" rx="55" ry="9" fill="rgba(0,0,0,0.15)"/>
+          <path d="M 110 200 C 110 200 10 132 10 70 C 10 32 38 12 68 26 C 84 34 98 50 110 68 C 122 50 136 34 152 26 C 182 12 210 32 210 70 C 210 132 110 200 110 200 Z" fill="url(#hg6)"/>
+          <path d="M 34 48 C 36 36 48 28 60 33" stroke="rgba(255,255,255,0.45)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <ellipse cx="82" cy="88" rx="13" ry="14" fill="white"/>
+          <ellipse cx="138" cy="88" rx="13" ry="14" fill="white"/>
+          <circle cx="84" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="140" cy="90" r="9" fill="#1a1a1a"/>
+          <circle cx="87" cy="86" r="3" fill="white"/>
+          <circle cx="143" cy="86" r="3" fill="white"/>
+          <path d="M 72 74 Q 82 68 92 74" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M 128 74 Q 138 68 148 74" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M 86 116 Q 110 132 134 116" stroke="#1a1a1a" stroke-width="3.5" fill="rgba(255,180,150,0.4)" stroke-linecap="round"/>
+          <ellipse cx="64" cy="110" rx="12" ry="8" fill="rgba(176,61,51,0.32)"/>
+          <ellipse cx="156" cy="110" rx="12" ry="8" fill="rgba(176,61,51,0.32)"/>
+          <path d="M 204 95 Q 220 74 214 52" stroke="#B03D33" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="213" cy="48" r="10" fill="#B03D33"/>
+          <path d="M 16 98 Q 2 116 6 136" stroke="#B03D33" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <circle cx="6" cy="138" r="10" fill="#B03D33"/>
+          <path d="M 94 196 Q 84 218 78 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="76" cy="234" rx="13" ry="8" fill="#B03D33"/>
+          <path d="M 126 196 Q 136 218 142 232" stroke="#E8415A" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <ellipse cx="144" cy="234" rx="13" ry="8" fill="#B03D33"/>
+        </svg>
+      </div>
+      <div class="cbubble gold-b" style="border-radius:20px 20px 4px 20px;">
+        <strong>Learning is strengthened through reflection.</strong><br/>
+        Let’s take a moment to revisit the terms we’ve encountered throughout this learning journey.
+      </div>
+    </div>
+  </div>
+
+   <div class="flipgrid">
+      <div class="flip" onclick="this.classList.toggle('flipped')">
+        <div class="flip-in">
+          <div class="ff"><div class="fi">&#129309;</div><h4>Heart–Brain Communication</h4><small>tap to flip</small></div>
+          <div class="fb"><p>The constant exchange of information between the heart and the brain affects how we feel, think, and respond to stress. The heart helps guide the brain, not just the other way around.</p></div>
+        </div>
+      </div>
+      <div class="flip" onclick="this.classList.toggle('flipped')">
+        <div class="flip-in">
+          <div class="ff" style="background:linear-gradient(135deg,#1D6363,#2d8b8b);"><div class="fi">&#9889;</div><h4>Nervous System</h4><small>tap to flip</small></div>
+          <div class="fb" style="border-color:#c0dff0;"><p>The body’s message system, made of the brain, spinal cord, and nerves, sends fast signals to control movement, thoughts, and emotions.</p></div>
+        </div>
+      </div>
+      <div class="flip" onclick="this.classList.toggle('flipped')">
+        <div class="flip-in">
+          <div class="ff" style="background:linear-gradient(135deg,#B03D33,#8a2f27);"><div class="fi">&#129514;</div><h4>Hormones</h4><small>tap to flip</small></div>
+          <div class="fb" style="border-color:#fcd0a8;"><p>Chemical messengers that travel through the bloodstream and change how the body feels and functions, including stress and mood.</p></div>
+        </div>
+      </div>
+      <div class="flip" onclick="this.classList.toggle('flipped')">
+        <div class="flip-in">
+          <div class="ff" style="background:linear-gradient(135deg,#645285,#4a3a68);"><div class="fi">&#8596;&#65039;</div><h4>Two-Way Signaling</h4><small>tap to flip</small></div>
+          <div class="fb" style="border-color:#ddd0f0;"><p>Communication that goes both directions between the heart and brain. Each one sends messages that influence the other.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+</div><!-- /app -->
+ 
+<script>
+// ─── SLIDE ENGINE ───
+let cur = 0;
+const TOTAL = 9;
+const track = document.getElementById('track');
+const tabs  = document.querySelectorAll('.tab-btn');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const dotsEl  = document.getElementById('dots');
+ 
+// Build dots
+for(let i=0;i<TOTAL;i++){
+  const d=document.createElement('button');
+  d.className='dot'+(i===0?' active':'');
+  d.onclick=(()=>{const n=i;return()=>goTo(n);})();
+  dotsEl.appendChild(d);
+}
+ 
+function goTo(n){
+  if(n<0||n>=TOTAL)return;
+  cur=n;
+  track.style.transform=`translateX(-${cur*100}%)`;
+  // tabs
+  tabs.forEach((t,i)=>t.classList.toggle('active',i===cur));
+  // dots
+  dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+  // arrows
+  prevBtn.disabled=cur===0;
+  nextBtn.disabled=cur===TOTAL-1;
+  // scroll active tab into view
+  tabs[cur].scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+}
+ 
+// Keyboard navigation
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight')goTo(cur+1);
+  if(e.key==='ArrowLeft') goTo(cur-1);
+});
+ 
+// Touch/swipe
+let tx=0;
+track.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+track.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>50) goTo(dx<0?cur+1:cur-1);
+},{passive:true});
+ 
+// ─── FLOATING LEAVES ───
+const leafLayer=document.getElementById('leaf-layer');
+const lc=['#00539B','#407E99','#A0B83A','#EEBD60','#E0750B','#B03D33','#1D6363','#83D8FE','#645285'];
+for(let i=0;i<16;i++){
+  const l=document.createElement('div');
+  l.className='fl';
+  const sz=12+Math.random()*20;
+  const color=lc[Math.floor(Math.random()*lc.length)];
+  l.style.cssText=`left:${Math.random()*100}vw;animation-duration:${9+Math.random()*14}s;animation-delay:${Math.random()*-22}s;`;
+  l.innerHTML=`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="${color}" opacity="0.6" xmlns="http://www.w3.org/2000/svg"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-8 2z"/></svg>`;
+  leafLayer.appendChild(l);
+}
+ 
+// ─── HERO STARS ───
+const hs=document.getElementById('hero-stars');
+for(let i=0;i<36;i++){
+  const s=document.createElement('div');
+  const sz=1.5+Math.random()*3;
+  const sc=['rgba(0,83,155,0.2)','rgba(0,83,155,0.1)','rgba(238,189,96,0.4)','rgba(64,126,153,0.25)'];
+  s.style.cssText=`position:absolute;width:${sz}px;height:${sz}px;border-radius:50%;background:${sc[Math.floor(Math.random()*sc.length)]};top:${Math.random()*100}%;left:${Math.random()*100}%;animation:twinkle ${2+Math.random()*4}s ${Math.random()*4}s ease-in-out infinite;`;
+  hs.appendChild(s);
+}
+ 
+// star keyframe
+const styleEl=document.createElement('style');
+styleEl.textContent='@keyframes twinkle{0%,100%{opacity:.1;transform:scale(1);}50%{opacity:.65;transform:scale(1.4);}}';
+document.head.appendChild(styleEl);
+ 
+// ─── MINDFULNESS TIMER ───
+let tInterval,tRunning=false,tLeft=300;
+function toggleTimer(){
+  const btn=document.getElementById('timer-btn');
+  const lbl=document.getElementById('timer-label');
+  if(!tRunning){
+    tRunning=true;btn.textContent='⏸ Pause';lbl.textContent='Breathe slowly…';
+    tInterval=setInterval(()=>{
+      tLeft--;updateTimer();
+      if(tLeft<=0){
+        clearInterval(tInterval);tRunning=false;
+        btn.textContent='↺ Restart';lbl.textContent='✓ Done! Notice how you feel.';tLeft=300;
+      }
+    },1000);
+  }else{
+    clearInterval(tInterval);tRunning=false;btn.textContent='▶ Resume';lbl.textContent='Paused';
+  }
+}
+function updateTimer(){
+  const m=Math.floor(tLeft/60),s=tLeft%60;
+  document.getElementById('timer-display').textContent=`${m}:${s.toString().padStart(2,'0')}`;
+}
+ 
+// ─── SAVE REFLECTIONS ───
+const saved={};
+function sv(inputId,okId){
+  saved[inputId]=document.getElementById(inputId).value;
+  const el=document.getElementById(okId);
+  el.style.display='block';
+  setTimeout(()=>el.style.display='none',3200);
+}
+ 
+</script>
+</body>
+</html>
