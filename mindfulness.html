@@ -90,28 +90,6 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var
 .slide::-webkit-scrollbar{width:4px;}
 .slide::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:2px;}
  
-/* ─── BOTTOM NAV ─── */
-.bottom-nav{
-  flex-shrink:0;height:52px;background:#00539B;
-  display:flex;align-items:center;justify-content:center;gap:14px;
-  box-shadow:0 -2px 12px rgba(0,83,155,.4);
-}
-.arrow-btn{
-  width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.35);
-  background:transparent;color:white;font-size:1rem;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:background .2s,border-color .2s,transform .15s;
-}
-.arrow-btn:hover{background:rgba(255,255,255,.15);border-color:white;transform:scale(1.1);}
-.arrow-btn:disabled{opacity:.3;cursor:default;transform:none;}
-.dots{display:flex;gap:8px;align-items:center;}
-.dot{
-  width:8px;height:8px;border-radius:50%;
-  background:rgba(255,255,255,.3);cursor:pointer;
-  transition:background .2s,transform .2s,width .3s;border:none;
-}
-.dot.active{background:var(--gold);width:22px;border-radius:4px;}
- 
 /* ─── FLOATING LEAVES ─── */
 .leaf-layer{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
 .fl{position:absolute;top:-60px;opacity:0;animation:leaffall linear infinite;}
@@ -591,37 +569,6 @@ style="
 </div><!-- /app -->
  
 <script>
-// ─── SLIDE ENGINE ───
-let cur = 0;
-const TOTAL = 9;
-const track = document.getElementById('track');
-const tabs  = document.querySelectorAll('.tab-btn');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const dotsEl  = document.getElementById('dots');
- 
-// Build dots
-for(let i=0;i<TOTAL;i++){
-  const d=document.createElement('button');
-  d.className='dot'+(i===0?' active':'');
-  d.onclick=(()=>{const n=i;return()=>goTo(n);})();
-  dotsEl.appendChild(d);
-}
- 
-function goTo(n){
-  if(n<0||n>=TOTAL)return;
-  cur=n;
-  track.style.transform=`translateX(-${cur*100}%)`;
-  // tabs
-  tabs.forEach((t,i)=>t.classList.toggle('active',i===cur));
-  // dots
-  dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
-  // arrows
-  prevBtn.disabled=cur===0;
-  nextBtn.disabled=cur===TOTAL-1;
-  // scroll active tab into view
-  tabs[cur].scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
-}
  
 // Keyboard navigation
 document.addEventListener('keydown',e=>{
@@ -686,15 +633,6 @@ function toggleTimer(){
 function updateTimer(){
   const m=Math.floor(tLeft/60),s=tLeft%60;
   document.getElementById('timer-display').textContent=`${m}:${s.toString().padStart(2,'0')}`;
-}
- 
-// ─── SAVE REFLECTIONS ───
-const saved={};
-function sv(inputId,okId){
-  saved[inputId]=document.getElementById(inputId).value;
-  const el=document.getElementById(okId);
-  el.style.display='block';
-  setTimeout(()=>el.style.display='none',3200);
 }
  
 </script>
