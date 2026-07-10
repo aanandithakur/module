@@ -62,18 +62,6 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var
   color:rgba(255,255,255,.6);white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);
   height:100%;display:flex;align-items:center;letter-spacing:.04em;text-transform:uppercase;
 }
-.tab-bar{display:flex;height:100%;}
-.tab-btn{
-  flex-shrink:0;padding:0 18px;height:100%;
-  background:transparent;border:none;
-  color:rgba(255,255,255,.6);font-family:'DM Sans',sans-serif;
-  font-size:.82rem;font-weight:700;cursor:pointer;
-  white-space:nowrap;border-bottom:3px solid transparent;
-  transition:color .2s,border-color .2s,background .2s;
-  letter-spacing:.02em;
-}
-.tab-btn:hover{color:rgba(255,255,255,.95);background:rgba(255,255,255,.1);}
-.tab-btn.active{color:#EEBD60;border-bottom-color:#EEBD60;background:rgba(255,255,255,.1);}
  
 /* ─── SLIDES WRAPPER ─── */
 .slides-wrapper{flex:1;overflow:hidden;position:relative;}
@@ -89,28 +77,6 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var
 }
 .slide::-webkit-scrollbar{width:4px;}
 .slide::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:2px;}
- 
-/* ─── BOTTOM NAV ─── */
-.bottom-nav{
-  flex-shrink:0;height:52px;background:#00539B;
-  display:flex;align-items:center;justify-content:center;gap:14px;
-  box-shadow:0 -2px 12px rgba(0,83,155,.4);
-}
-.arrow-btn{
-  width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.35);
-  background:transparent;color:white;font-size:1rem;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:background .2s,border-color .2s,transform .15s;
-}
-.arrow-btn:hover{background:rgba(255,255,255,.15);border-color:white;transform:scale(1.1);}
-.arrow-btn:disabled{opacity:.3;cursor:default;transform:none;}
-.dots{display:flex;gap:8px;align-items:center;}
-.dot{
-  width:8px;height:8px;border-radius:50%;
-  background:rgba(255,255,255,.3);cursor:pointer;
-  transition:background .2s,transform .2s,width .3s;border:none;
-}
-.dot.active{background:var(--gold);width:22px;border-radius:4px;}
  
 /* ─── FLOATING LEAVES ─── */
 .leaf-layer{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
@@ -588,37 +554,6 @@ textarea:focus{outline:none;border-color:var(--sage);background:white;}
 </div><!-- /app -->
  
 <script>
-// ─── SLIDE ENGINE ───
-let cur = 0;
-const TOTAL = 9;
-const track = document.getElementById('track');
-const tabs  = document.querySelectorAll('.tab-btn');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const dotsEl  = document.getElementById('dots');
- 
-// Build dots
-for(let i=0;i<TOTAL;i++){
-  const d=document.createElement('button');
-  d.className='dot'+(i===0?' active':'');
-  d.onclick=(()=>{const n=i;return()=>goTo(n);})();
-  dotsEl.appendChild(d);
-}
- 
-function goTo(n){
-  if(n<0||n>=TOTAL)return;
-  cur=n;
-  track.style.transform=`translateX(-${cur*100}%)`;
-  // tabs
-  tabs.forEach((t,i)=>t.classList.toggle('active',i===cur));
-  // dots
-  dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
-  // arrows
-  prevBtn.disabled=cur===0;
-  nextBtn.disabled=cur===TOTAL-1;
-  // scroll active tab into view
-  tabs[cur].scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
-}
  
 // Keyboard navigation
 document.addEventListener('keydown',e=>{
@@ -661,38 +596,6 @@ for(let i=0;i<36;i++){
 const styleEl=document.createElement('style');
 styleEl.textContent='@keyframes twinkle{0%,100%{opacity:.1;transform:scale(1);}50%{opacity:.65;transform:scale(1.4);}}';
 document.head.appendChild(styleEl);
- 
-// ─── MINDFULNESS TIMER ───
-let tInterval,tRunning=false,tLeft=300;
-function toggleTimer(){
-  const btn=document.getElementById('timer-btn');
-  const lbl=document.getElementById('timer-label');
-  if(!tRunning){
-    tRunning=true;btn.textContent='⏸ Pause';lbl.textContent='Breathe slowly…';
-    tInterval=setInterval(()=>{
-      tLeft--;updateTimer();
-      if(tLeft<=0){
-        clearInterval(tInterval);tRunning=false;
-        btn.textContent='↺ Restart';lbl.textContent='✓ Done! Notice how you feel.';tLeft=300;
-      }
-    },1000);
-  }else{
-    clearInterval(tInterval);tRunning=false;btn.textContent='▶ Resume';lbl.textContent='Paused';
-  }
-}
-function updateTimer(){
-  const m=Math.floor(tLeft/60),s=tLeft%60;
-  document.getElementById('timer-display').textContent=`${m}:${s.toString().padStart(2,'0')}`;
-}
- 
-// ─── SAVE REFLECTIONS ───
-const saved={};
-function sv(inputId,okId){
-  saved[inputId]=document.getElementById(inputId).value;
-  const el=document.getElementById(okId);
-  el.style.display='block';
-  setTimeout(()=>el.style.display='none',3200);
-}
  
 </script>
 </body>
